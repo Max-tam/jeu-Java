@@ -9,12 +9,12 @@ public class Hero extends Entite {
         this.nomHero = nomHero;
     }
 
-    public Arme[] getInventaireArmes() 
+    public Arme[] getInventaireArmes() // recuperer l'inventaire d'arme
     {
         return inventaireArmes;
     }
 
-    public void setInventaireArmes(Arme[] inventaireArmes) 
+    public void setInventaireArmes(Arme[] inventaireArmes) // l'inventaire d'arme
     {
         this.inventaireArmes = inventaireArmes;
     }
