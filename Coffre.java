@@ -3,6 +3,7 @@ public class Coffre {
     private boolean estOuvert;
     private Artefact [] artefactsDansCoffre;
     private Arme [] armesDansCoffre;
+    // coordonnée
 
     public Coffre(boolean estOuvert, Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre) { // Constucteur de la Class Coffre
         this.estOuvert = estOuvert;
