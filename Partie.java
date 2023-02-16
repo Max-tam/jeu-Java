@@ -42,12 +42,7 @@ public class Partie {
 
 /*=========================| Fonction / Procedure |=========================*/
 
-    public void gestionMenuPrincipal(Scanner sc) { // Gestion du Menu Principal
-
-        
-
-        // creation objet de la class EntreSortie pour gestion de la console
-        EntreeSortie entreeSortie = new EntreeSortie();
+    public void gestionMenuPrincipal(Scanner sc, EntreeSortie entreeSortie) { // Gestion du Menu Principal
 
         while (partieEnCours) {
 
@@ -56,8 +51,8 @@ public class Partie {
             int choixMenuPrincipal = entreeSortie.menuPrincipal(sc);
             switch (choixMenuPrincipal) {
                 case 1:
-                    entreeSortie.InitalisationNomHero(sc);
-                    // Lancer le jeu
+                    // Lancer l'initialisation du jeu
+                    initialisationPartie(sc, entreeSortie);
                     break;
                 case 2:
                     System.out.println("**Parametre**");
@@ -76,7 +71,18 @@ public class Partie {
                     break;
             }
         }
-        sc.close();
+    }
+
+    public void initialisationPartie(Scanner sc, EntreeSortie entreeSortie) {
+
+        String pseudoJoueur = entreeSortie.InitalisationNomHero(sc);
+
+        // Initialisation Arme
+        Arme armeMain = new Arme("Corp à corp","main nue",5);
+
+        // Initialisation Joueur
+        Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
+
     }
 
 }

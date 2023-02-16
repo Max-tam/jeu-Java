@@ -6,10 +6,17 @@ public class Main {
         // creation Scanner
         Scanner sc = new Scanner(System.in);
 
-        // demarrage jeu
+        // Class partie
         Partie partie = new Partie();
+
+        // Class EntreeSortie
+        EntreeSortie entreeSortie = new EntreeSortie();
+
         // Menu principal
-        partie.gestionMenuPrincipal(sc);
+        partie.gestionMenuPrincipal(sc,entreeSortie);
+
+        // fermeture du Scanner
+        sc.close();
     }
     
 }

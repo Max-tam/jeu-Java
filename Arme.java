@@ -4,10 +4,11 @@ public class Arme {
     private String nomArme;
     private int degat;
 
-    public Arme(String typeArme,String nomArme) // constructeur de la class Arme
+    public Arme(String typeArme,String nomArme,int degat) // constructeur de la class Arme
     {
         this.typeArme = typeArme;
         this.nomArme = nomArme;
+        this.degat = degat;
     }
 
     public int getDegat() // recuperer le nombre de dégat de l'arme
