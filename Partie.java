@@ -78,7 +78,7 @@ public class Partie {
         String pseudoJoueur = entreeSortie.InitalisationNomHero(sc);
 
         // Initialisation Arme
-        Arme armeMain = new Arme("Corp à corp","main nue",5);
+        Arme armeMain = new Arme("main nue",5);
 
         // Initialisation Joueur
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
