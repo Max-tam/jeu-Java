@@ -10,27 +10,27 @@ public class Partie {
         this.aPerdu = false;
     }
 
-    public boolean getEtatPartie() {
+    public boolean getEtatPartie() { // recupere l'état de la partie (true pour en cours / false pour fini)
         return etatPartie;
     }
 
-    public void setEtatPartie(boolean etatPartie) {
+    public void setEtatPartie(boolean etatPartie) { // permet de modifier l'état de la Partie
         this.etatPartie = etatPartie;
     }
     
-    public boolean getAGagne() {
+    public boolean getAGagne() { // savoir si le joueur a gagne
         return aGagne;
     }
 
-    public void setAGagne(boolean aGagne) {
+    public void setAGagne(boolean aGagne) { // permet de changer l'état de si le joueur à gagné
         this.aGagne = aGagne;
     }
 
-    public boolean getAPerdu() {
+    public boolean getAPerdu() { // savoir si joueur à perdu
         return aPerdu;
     }
 
-    public void setAPerdu(boolean aPerdu) {
+    public void setAPerdu(boolean aPerdu) { // permet de changer l'état de si le joueur à perdu
         this.aPerdu = aPerdu;
     }
 }
