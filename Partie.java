@@ -2,22 +2,22 @@ import java.util.Scanner;
 
 public class Partie {
 
-    private boolean etatPartie;
+    private boolean partieEnCours;
     private boolean aGagne;
     private boolean aPerdu;
 
     public Partie() { // constructeur
-        this.etatPartie = true;
+        this.partieEnCours = true;
         this.aGagne = false;
         this.aPerdu = false;
     }
 
     public boolean getEtatPartie() { // recupere l'état de la partie (true pour en cours / false pour fini)
-        return etatPartie;
+        return partieEnCours;
     }
 
     public void setEtatPartie(boolean etatPartie) { // permet de modifier l'état de la Partie
-        this.etatPartie = etatPartie;
+        this.partieEnCours = etatPartie;
     }
     
     public boolean getAGagne() { // savoir si le joueur a gagne
@@ -41,10 +41,38 @@ public class Partie {
         // creation Scanner
         Scanner sc = new Scanner(System.in);
 
-        // creation objet de la class EntreSortie
+        // creation objet de la class EntreSortie pour gestion de la console
         EntreeSortie entreeSortie = new EntreeSortie();
-        entreeSortie.titre();
-        entreeSortie.menuPrincipal(sc);
+
+        while (partieEnCours) {
+            
+            //affichage titre du jeu
+            entreeSortie.titre();
+            int choixMenuPrincipal = entreeSortie.menuPrincipal(sc);
+            switch (choixMenuPrincipal) {
+                case 1:
+                    entreeSortie.InitalisationPartie(sc);
+                    // Lancer le jeu
+                    break;
+                case 2:
+                    System.out.println("**Parametre**");
+                    // Lancer Menu Parametre
+                    break;
+                case 3:
+                    System.out.println("**Credit**");
+                    // Lancer Credit
+                    break;
+                case 4:
+                    // on quitte la partie en mettant en false la boucle
+                    this.partieEnCours = false;
+                    break;
+                default:
+                    System.out.println("==| Choix non correct |==");
+                    break;
+            }
+
+        }
+
         sc.close();
     }
 
