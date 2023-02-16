@@ -4,12 +4,10 @@ public class Hero extends Entite {
     private Arme [] inventaireArmes;
     private Potion [] inventairePotions;
 
-    public Hero(int posY,int posX, int PV, Arme Arme, int defense, String nomHero,Arme [] inventaireArmes,Potion [] inventairePotions)  // constructeur de la class Hero
+    public Hero(int posY,int posX, int PV, Arme Arme, int defense, String nomHero)  // constructeur de la class Hero
     {
         super(posY, posX, PV, Arme, defense);
         this.nomHero = nomHero;
-        this.inventaireArmes = inventaireArmes;
-        this.inventairePotions = inventairePotions;
     }
 
     public Potion[] getInventairePotions() {

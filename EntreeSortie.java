@@ -11,7 +11,7 @@ public class EntreeSortie {
         System.out.println();
     }
 
-    public void menuPrincipal() // affichage menu principal + choix utilisateur
+    public void menuPrincipal(Scanner sc) // affichage menu principal + choix utilisateur
     {
         System.out.println();
         System.out.println("======| Menu Principal |======");
@@ -22,15 +22,13 @@ public class EntreeSortie {
         System.out.println("|-----|   CREDIT : 3  |-----|");
         System.out.println("-----------------------------");
         System.out.println();
-
-        Scanner sc1 = new Scanner(System.in);
         System.out.print("-> ");
-        int choixMenuPrincipal = sc1.nextInt();
+        int choixMenuPrincipal = sc.nextInt();
         System.out.println();
-        sc1.close();
         switch (choixMenuPrincipal) {
             case 1:
                 System.out.println("**Lance le jeu**");
+                InitalisationPartie(sc);
                 // Lancer le jeu
                 break;
             case 2:
@@ -45,5 +43,17 @@ public class EntreeSortie {
                 System.out.println("==| Choix non correct |==");
                 break;
         }
+    }
+
+    public void InitalisationPartie(Scanner sc) {
+
+        System.out.println();
+        System.out.println("======| Partie |======");
+        System.out.println();
+        System.out.print("Votre speudo: ");
+        String pseudoJoueur = sc.next();
+        System.out.println();
+        System.out.println(pseudoJoueur);
+        
     }
 }
