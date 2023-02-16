@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Partie {
 
     private boolean etatPartie;
@@ -33,4 +35,17 @@ public class Partie {
     public void setAPerdu(boolean aPerdu) { // permet de changer l'état de si le joueur à perdu
         this.aPerdu = aPerdu;
     }
+
+    public void gestionPartie() {
+
+        // creation Scanner
+        Scanner sc = new Scanner(System.in);
+
+        // creation objet de la class EntreSortie
+        EntreeSortie entreeSortie = new EntreeSortie();
+        entreeSortie.titre();
+        entreeSortie.menuPrincipal(sc);
+        sc.close();
+    }
+
 }

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class EntreeSortie {
     
-    public void debutPartie() // affichage du titre
+    public void titre() // affichage du titre
     {
         System.out.println();
         System.out.println("|====================================|");
