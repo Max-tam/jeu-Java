@@ -83,6 +83,16 @@ public class Partie {
         // Initialisation Joueur
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
 
+        // Initialisation Carte
+        char [][] carte = {{'0','0','0','0','0'},
+                           {'0','0','0','0','0'},
+                           {'0','0','0','0','0'},
+                           {'0','0','0','0','0'},
+                           {'0','0','0','0','0'}};
+
+        Donjon Donjon1 = new Donjon(carte);
+        System.out.println(Donjon1.getCarte());
+
     }
 
 }
