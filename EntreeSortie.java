@@ -2,50 +2,30 @@ import java.util.Scanner;
 
 public class EntreeSortie {
     
-    public void debutPartie() // affichage du titre
+    public void titre() // affichage du titre
     {
-        System.out.println();
-        System.out.println("|====================================|");
-        System.out.println("|=====| Bienvenue sur Java RPG |=====|");
-        System.out.println("|====================================|");
-        System.out.println();
+        System.out.println("\n|====================================|\n"+
+                           "|=====| Bienvenue sur Java RPG |=====|\n"+
+                           "|====================================|\n\n");
     }
 
-    public void menuPrincipal(Scanner sc) // affichage menu principal + choix utilisateur
+    public int menuPrincipal(Scanner sc) // affichage menu principal + choix utilisateur
     {
         System.out.println();
-        System.out.println("======| Menu Principal |======");
-        System.out.println();
-        System.out.println("-----------------------------");
-        System.out.println("|-----|   JOUER : 1   |-----|");
-        System.out.println("|-----| PARAMETRE : 2 |-----|");
-        System.out.println("|-----|   CREDIT : 3  |-----|");
-        System.out.println("-----------------------------");
-        System.out.println();
+        System.out.println( "======| Menu Principal |======\n\n"+
+                            "-----------------------------\n"+
+                            "|-----|   JOUER : 1   |-----|\n"+
+                            "|-----| PARAMETRE : 2 |-----|\n"+
+                            "|-----|   CREDIT : 3  |-----|\n"+
+                            "|-----|  QUITTER : 4  |-----|\n"+
+                            "-----------------------------\n\n");
         System.out.print("-> ");
         int choixMenuPrincipal = sc.nextInt();
         System.out.println();
-        switch (choixMenuPrincipal) {
-            case 1:
-                System.out.println("**Lance le jeu**");
-                InitalisationPartie(sc);
-                // Lancer le jeu
-                break;
-            case 2:
-                System.out.println("**Parametre**");
-                // Lancer Menu Parametre
-                break;
-            case 3:
-                System.out.println("**Credit**");
-                // Lancer Credit
-                break;
-            default:
-                System.out.println("==| Choix non correct |==");
-                break;
-        }
+        return choixMenuPrincipal;
     }
 
-    public void InitalisationPartie(Scanner sc) {
+    public String InitalisationNomHero(Scanner sc) {
 
         System.out.println();
         System.out.println("======| Partie |======");
@@ -53,7 +33,6 @@ public class EntreeSortie {
         System.out.print("Votre speudo: ");
         String pseudoJoueur = sc.next();
         System.out.println();
-        System.out.println(pseudoJoueur);
-        
+        return pseudoJoueur;
     }
 }
