@@ -79,6 +79,7 @@ public class Partie {
 
         // Initialisation Arme
         Arme armeMain = new Arme("main nue",5);
+        Arme armeArc = new Arme("arc", 10);
 
         // Initialisation Joueur
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
@@ -91,7 +92,10 @@ public class Partie {
                            {'0','0','0','0','0'}};
 
         Donjon Donjon1 = new Donjon(carte);
-        System.out.println(Donjon1.getCarte());
+        
+        // Initialisation Monstre
+        Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
+        Monstre squelette = new Monstre("squelette", 4, 4, 75, armeArc, 0);
 
     }
 
