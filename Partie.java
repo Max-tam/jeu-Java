@@ -86,6 +86,12 @@ public class Partie {
         Arme armeMain = new Arme("main nue",5);
         Arme armeArc = new Arme("arc", 10);
 
+        // Initialisation Artefact
+
+        Artefact artefactDefense = new Artefact(effetDefense,"artefact de defense");
+        Artefact artefactVie = new Artefact(effetVie, "artefact de vie");
+        Artefact artefactAttaque = new Artefact(effetAttaque, "artefact d'attaque");
+        
         // Initialisation Joueur
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
 
