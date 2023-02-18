@@ -1,10 +1,11 @@
-public class Potion extends Effet{
+public class Potion {
 
     private String nomPotion;
     private int duree;
+    private Effet nomEffet;
 
-    public Potion(String effet, String nomPotion, int duree) { // Constructeur de la Class Potion
-        super(effet);
+    public Potion(Effet effet, String nomPotion, int duree) { // Constructeur de la Class Potion
+        this.nomEffet = effet;
         this.nomPotion = nomPotion;
         this.duree = duree;
     }

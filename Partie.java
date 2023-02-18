@@ -91,7 +91,12 @@ public class Partie {
         Artefact artefactDefense = new Artefact(effetDefense,"artefact de defense");
         Artefact artefactVie = new Artefact(effetVie, "artefact de vie");
         Artefact artefactAttaque = new Artefact(effetAttaque, "artefact d'attaque");
-        
+
+        // Initialisation Potion
+        Potion potionVie = new Potion(effetVie, "potion de gain de vie", 1);
+        Potion potionDefense = new Potion(effetDefense, "potion de gain de defense",3);
+        Potion potionAttaque = new Potion(effetAttaque, "potion de gain d'attaque",3);
+
         // Initialisation Joueur
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
 
