@@ -77,6 +77,11 @@ public class Partie {
 
         String pseudoJoueur = entreeSortie.InitalisationNomHero(sc);
 
+        // Initialisation Effet
+        Effet effetDefense = new Effet("defense renforcé");
+        Effet effetAttaque = new Effet("attaque accrue");
+        Effet effetVie = new Effet("vie accrue");
+
         // Initialisation Arme
         Arme armeMain = new Arme("main nue",5);
         Arme armeArc = new Arme("arc", 10);
@@ -96,6 +101,9 @@ public class Partie {
         // Initialisation Monstre
         Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
         Monstre squelette = new Monstre("squelette", 4, 4, 75, armeArc, 0);
+
+        // Initialisation Coffre
+
 
     }
 

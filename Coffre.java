@@ -5,8 +5,8 @@ public class Coffre {
     private Arme [] armesDansCoffre;
     // coordonnée
 
-    public Coffre(boolean estOuvert, Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre) { // Constucteur de la Class Coffre
-        this.estOuvert = estOuvert;
+    public Coffre(Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre) { // Constucteur de la Class Coffre
+        this.estOuvert = false;
         this.artefactsDansCoffre = artefactsDansCoffre;
         this.armesDansCoffre = armesDansCoffre;
     }
