@@ -25,14 +25,19 @@ public class EntreeSortie {
         return choixMenuPrincipal;
     }
 
-    public String InitalisationNomHero(Scanner sc) {
+    public String InitalisationPartie(Scanner sc) {
 
         System.out.println();
-        System.out.println("======| Partie |======");
-        System.out.println();
+        System.out.println("======| Partie |======\n");
         System.out.print("Votre speudo: ");
         String pseudoJoueur = sc.next();
-        System.out.println();
+        System.out.println("\n"+
+                           "-----------------------------"+
+                           "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
+                           "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
+                           "\n\n"+pseudoJoueur+" bonne chance !"+
+                           "\n-----------------------------");
         return pseudoJoueur;
     }
+
 }

@@ -52,7 +52,7 @@ public class Partie {
             switch (choixMenuPrincipal) {
                 case 1:
                     // Lancer l'initialisation du jeu
-                    initialisationPartie(sc, entreeSortie);
+                    initialisationEtPartie(sc, entreeSortie);
                     break;
                 case 2:
                     System.out.println("**Parametre**");
@@ -73,9 +73,9 @@ public class Partie {
         }
     }
 
-    public void initialisationPartie(Scanner sc, EntreeSortie entreeSortie) {
+    public void initialisationEtPartie(Scanner sc, EntreeSortie entreeSortie) { // Initialisation + gestion de la partie
 
-        String pseudoJoueur = entreeSortie.InitalisationNomHero(sc);
+        // ==========| INITIALISATION |==========
 
         // Initialisation Effet
         Effet effetDefense = new Effet("defense renforcé");
@@ -105,6 +105,7 @@ public class Partie {
         Coffre coffre1 = new Coffre(listeArtefactCoffre1, listeArmeCoffre1, 1, 0);
 
         // Initialisation Joueur
+        String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
 
         // Initialisation Carte
@@ -119,6 +120,10 @@ public class Partie {
         // Initialisation Monstre
         Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
         Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0);
+
+        //==========| PENDANT PARTIE |==========
+
+        // fonction console pour 
 
     }
 

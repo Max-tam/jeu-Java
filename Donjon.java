@@ -16,7 +16,7 @@ public class Donjon
     {
         for (int y = 0; y < carte.length; y++) {
             for (int x = 0; x < carte[y].length; x++) {
-                System.out.print(carte[y][x]+"\t");
+                System.out.print(carte[y][x]+" ");
             }
             System.out.println();
             
