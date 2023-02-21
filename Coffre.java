@@ -3,12 +3,16 @@ public class Coffre {
     private boolean estOuvert;
     private Artefact [] artefactsDansCoffre;
     private Arme [] armesDansCoffre;
+    private int posX;
+    private int posY;
     // coordonnée
 
-    public Coffre(Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre) { // Constucteur de la Class Coffre
+    public Coffre(Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre,int posX,int posY) { // Constucteur de la Class Coffre
         this.estOuvert = false;
         this.artefactsDansCoffre = artefactsDansCoffre;
         this.armesDansCoffre = armesDansCoffre;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public boolean getestOuvert() { // retourne si le coffre est ouvert ou non

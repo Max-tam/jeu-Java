@@ -97,6 +97,13 @@ public class Partie {
         Potion potionDefense = new Potion(effetDefense, "potion de gain de defense",3);
         Potion potionAttaque = new Potion(effetAttaque, "potion de gain d'attaque",3);
 
+        // Initialisation Coffre
+
+        Artefact [] listeArtefactCoffre1 = {artefactAttaque};
+        Arme [] listeArmeCoffre1 = {armeArc};
+
+        Coffre coffre1 = new Coffre(listeArtefactCoffre1, listeArmeCoffre1, 1, 0);
+
         // Initialisation Joueur
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
 
@@ -111,10 +118,7 @@ public class Partie {
         
         // Initialisation Monstre
         Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
-        Monstre squelette = new Monstre("squelette", 4, 4, 75, armeArc, 0);
-
-        // Initialisation Coffre
-
+        Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0);
 
     }
 
