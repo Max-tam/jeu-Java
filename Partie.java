@@ -123,7 +123,8 @@ public class Partie {
 
         //==========| PENDANT PARTIE |==========
 
-        // fonction console pour 
+        // introduction du jeu (but)
+        entreeSortie.introduction(pseudoJoueur, sc);
 
     }
 
