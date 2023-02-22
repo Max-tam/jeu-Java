@@ -52,7 +52,7 @@ public class Partie {
             switch (choixMenuPrincipal) {
                 case 1:
                     // Lancer l'initialisation du jeu
-                    initialisationPartie(sc, entreeSortie);
+                    initialisationEtPartie(sc, entreeSortie);
                     break;
                 case 2:
                     System.out.println("**Parametre**");
@@ -73,14 +73,39 @@ public class Partie {
         }
     }
 
-    public void initialisationPartie(Scanner sc, EntreeSortie entreeSortie) {
+    public void initialisationEtPartie(Scanner sc, EntreeSortie entreeSortie) { // Initialisation + gestion de la partie
 
-        String pseudoJoueur = entreeSortie.InitalisationNomHero(sc);
+        // ==========| INITIALISATION |==========
+
+        // Initialisation Effet
+        Effet effetDefense = new Effet("defense renforcé");
+        Effet effetAttaque = new Effet("attaque accrue");
+        Effet effetVie = new Effet("vie accrue");
 
         // Initialisation Arme
         Arme armeMain = new Arme("main nue",5);
+        Arme armeArc = new Arme("arc", 10);
+
+        // Initialisation Artefact
+
+        Artefact artefactDefense = new Artefact(effetDefense,"artefact de defense");
+        Artefact artefactVie = new Artefact(effetVie, "artefact de vie");
+        Artefact artefactAttaque = new Artefact(effetAttaque, "artefact d'attaque");
+
+        // Initialisation Potion
+        Potion potionVie = new Potion(effetVie, "potion de gain de vie", 1);
+        Potion potionDefense = new Potion(effetDefense, "potion de gain de defense",3);
+        Potion potionAttaque = new Potion(effetAttaque, "potion de gain d'attaque",3);
+
+        // Initialisation Coffre
+
+        Artefact [] listeArtefactCoffre1 = {artefactAttaque};
+        Arme [] listeArmeCoffre1 = {armeArc};
+
+        Coffre coffre1 = new Coffre(listeArtefactCoffre1, listeArmeCoffre1, 1, 0);
 
         // Initialisation Joueur
+        String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
         Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
 
         // Initialisation Carte
@@ -91,7 +116,15 @@ public class Partie {
                            {'0','0','0','0','0'}};
 
         Donjon Donjon1 = new Donjon(carte);
-        System.out.println(Donjon1.getCarte());
+        
+        // Initialisation Monstre
+        Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
+        Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0);
+
+        //==========| PENDANT PARTIE |==========
+
+        // introduction du jeu (but)
+        entreeSortie.introduction(pseudoJoueur, sc);
 
     }
 

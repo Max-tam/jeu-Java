@@ -25,14 +25,25 @@ public class EntreeSortie {
         return choixMenuPrincipal;
     }
 
-    public String InitalisationNomHero(Scanner sc) {
+    public String InitalisationPartie(Scanner sc) {
 
         System.out.println();
-        System.out.println("======| Partie |======");
-        System.out.println();
+        System.out.println("======| Partie |======\n");
         System.out.print("Votre speudo: ");
-        String pseudoJoueur = sc.next();
-        System.out.println();
+        String pseudoJoueur = sc.next(); // pseudo du joueur
         return pseudoJoueur;
     }
+
+    public void introduction(String pseudoJoueur, Scanner sc) {
+        System.out.println("\n"+
+                           "-----------------------------"+
+                           "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
+                           "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
+                           "\n\n"+pseudoJoueur+" bonne chance !"+
+                           "\n-----------------------------\n"+
+                           "\nAppuyer sur Entree pour continuer");
+        sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
+        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+    }
+
 }

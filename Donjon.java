@@ -12,8 +12,14 @@ public class Donjon
         this.carte = carte;
     }
 
-    public char[][] getCarte() // recuper le tableau de la carte
+    public void getCarte() // recuper le tableau de la carte
     {
-        return carte;
+        for (int y = 0; y < carte.length; y++) {
+            for (int x = 0; x < carte[y].length; x++) {
+                System.out.print(carte[y][x]+" ");
+            }
+            System.out.println();
+            
+        }
     }
 }

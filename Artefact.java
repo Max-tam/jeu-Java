@@ -1,9 +1,10 @@
-public class Artefact extends Effet {
+public class Artefact{
 
     private String nomArtefact;
+    private Effet nomEffet;
 
-    public Artefact(String effet, String nomArtefact) { // constructeur de la Class Artefact
-        super(effet);
+    public Artefact(Effet effet, String nomArtefact) { // constructeur de la Class Artefact
+        this.nomEffet = effet;
         this.nomArtefact = nomArtefact;
     }
 
