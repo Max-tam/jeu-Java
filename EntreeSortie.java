@@ -25,6 +25,13 @@ public class EntreeSortie {
         return choixMenuPrincipal;
     }
 
+    public void choixIncorrect(Scanner sc) {
+        System.out.println( "==| Choix non correct |=="+
+                            "\nAppuyer sur Entree pour revenir au menu");
+        sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
+        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+    } 
+
     public String InitalisationPartie(Scanner sc) {
 
         System.out.println();

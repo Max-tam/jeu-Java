@@ -67,7 +67,7 @@ public class Partie {
                     this.partieEnCours = false;
                     break;
                 default:
-                    System.out.println("==| Choix non correct |==");
+                    entreeSortie.choixIncorrect(sc);
                     break;
             }
         }
@@ -123,8 +123,21 @@ public class Partie {
 
         //==========| PENDANT PARTIE |==========
 
-        // introduction du jeu (but)
+        // procedure introduction du jeu (but)
         entreeSortie.introduction(pseudoJoueur, sc);
+
+        // procedure lancement menu de partie
+        boolean menuPartie = true;
+        while (menuPartie) {
+            
+        }
+
+            
+        /* 
+         * - affichage de la map avec position du joueur
+         * - joueur peut se déplacer sans sortir de la map
+         * - affichage de la map met à jour la position du joueur à chaque fois
+         */
 
     }
 
