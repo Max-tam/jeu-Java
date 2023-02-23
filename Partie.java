@@ -132,12 +132,13 @@ public class Partie {
         //while (menuPartie) {
             
         //}
-
+        Donjon1.getCarte();
+        Donjon1.getCarte();
             
         /* 
-         * - affichage de la map avec position du joueur
-         * - joueur peut se déplacer sans sortir de la map
-         * - affichage de la map met à jour la position du joueur à chaque fois
+         * - affichage de la map avec position du joueur (0)
+         * - joueur peut se déplacer sans sortir de la map (x)
+         * - affichage de la map met à jour la position du joueur à chaque fois (0)
          */
 
     }

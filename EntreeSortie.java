@@ -46,7 +46,7 @@ public class EntreeSortie {
                            "-----------------------------"+
                            "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
                            "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
-                           "\n\n"+pseudoJoueur+" bonne chance !"+
+                           "\n\nbonne chance !"+
                            "\n-----------------------------\n"+
                            "\nAppuyer sur Entree pour continuer");
         sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
