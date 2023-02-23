@@ -22,4 +22,16 @@ public class Donjon
             
         }
     }
+
+    public void metAJourCarte(Hero joueur) {
+        for (int y = 0; y < carte.length; y++) {
+            for (int x = 0; x < carte[y].length; x++) {
+                if (carte[y][x] == 'X') {
+                    carte[y][x] = '0';
+                }
+            }
+            
+        }
+        carte[joueur.GetPosYHero()][joueur.GetPosXHero()] = 'X';
+    }
 }

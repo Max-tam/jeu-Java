@@ -128,9 +128,10 @@ public class Partie {
 
         // procedure lancement menu de partie
         boolean menuPartie = true;
-        while (menuPartie) {
+        
+        //while (menuPartie) {
             
-        }
+        //}
 
             
         /* 
