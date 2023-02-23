@@ -106,7 +106,7 @@ public class Partie {
 
         // Initialisation Joueur
         String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
-        Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
+        Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur);
 
         // Initialisation Carte
         char [][] carte = {{'0','0','0','0','0'},
@@ -133,8 +133,11 @@ public class Partie {
             
         //}
         Donjon1.getCarte();
+        Donjon1.metAJourCarte(hero);
         Donjon1.getCarte();
-            
+        String directionPossibleHero = hero.directionPossible(Donjon1);
+        System.out.println(directionPossibleHero);
+
         /* 
          * - affichage de la map avec position du joueur (0)
          * - joueur peut se déplacer sans sortir de la map (x)

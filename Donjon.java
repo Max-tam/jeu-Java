@@ -34,4 +34,12 @@ public class Donjon
         }
         carte[joueur.GetPosYHero()][joueur.GetPosXHero()] = 'X';
     }
+
+    public int getTailleY() { // renvoie la taille de la map en hauteur
+        return carte.length;
+    }
+
+    public int getTailleX() { // renvoie la taille de la map en largeur
+        return carte[0].length; // comme la carte est un carré, peut importe la valeur de Y, la valeur max de X sera la même
+    }
 }
