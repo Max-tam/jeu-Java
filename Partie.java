@@ -137,8 +137,8 @@ public class Partie {
         Donjon1.getCarte(); // affiche la carte avec la position du joueur
         String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
         System.out.println(directionPossibleHero); // affiche la suite des 4 caractères.
-        entreeSortie.propositionDirectionPossible(directionPossibleHero,sc);
-
+        char result = entreeSortie.choixDirectionPossible(directionPossibleHero,sc);
+        System.out.println(result);
         /* 
          * - affichage de la map avec position du joueur (0)
          * - joueur peut se déplacer sans sortir de la map (x)

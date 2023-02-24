@@ -32,7 +32,7 @@ public class EntreeSortie {
 
     public void choixIncorrect(Scanner sc) {
         System.out.println( "==| Choix non correct |=="+
-                            "\nAppuyer sur Entree pour revenir au menu");
+                            "\nAppuyer sur Entree pour refaire un choix");
         sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
     } 
 
@@ -55,22 +55,42 @@ public class EntreeSortie {
         sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
         entreePourPasser(sc);
     }
-public void propositionDirectionPossible(String directionPossible, Scanner sc) { // possibilité determiné grace au code DGHB
-    System.out.println("\nVoici vos possibilités de déplacement:\n");
-    if (directionPossible.charAt(0) == 'D') { // .charAt(int indice) permet de récuperer le caractère d'un String
-        System.out.println("\n\t- Droite");
+    public char choixDirectionPossible(String directionPossible, Scanner sc) { // possibilité determiné grace au code DGHB
+        System.out.println("\nVoici vos possibilités de déplacement:\n");
+        if (directionPossible.charAt(0) == 'D') { // .charAt(int indice) permet de récuperer le caractère d'un String
+            System.out.println("\n\t- Droite");
+        }
+        if (directionPossible.charAt(1) == 'G') {
+            System.out.println("\n\t- Gauche");
+        }
+        if (directionPossible.charAt(2) == 'H') {
+            System.out.println("\n\t- Haut");
+        }
+        if (directionPossible.charAt(3) == 'B') {
+            System.out.println("\n\t- Bas");
+        }
+        char direction;
+        boolean choixDirectionNonPris = true;
+        while (choixDirectionNonPris) 
+        {
+            System.out.print("\nvotre choix (initiale de la direction:\n\n-> ");
+            direction = sc.next().charAt(0);
+            // première verification si la saisie prend la valeur D,G,H ou B
+            if (direction == 'D' || direction == 'G' || direction == 'H' || direction == 'B') {
+                // deuxième verification si la saisie correspon à un choix possible
+                if (directionPossible.charAt(0) == direction || directionPossible.charAt(1) == direction || directionPossible.charAt(2) == direction || directionPossible.charAt(3) == direction) {
+                    choixDirectionNonPris = false;
+                    entreePourPasser(sc);
+                    return direction;   
+                }
+                else {
+                    choixIncorrect(sc);
+                }
+            }
+            else {
+                choixIncorrect(sc);
+            }
+        }
+    return 't'; // bug sur la porté de variable (char direction)
     }
-    if (directionPossible.charAt(1) == 'G') {
-        System.out.println("\n\t- Gauche");
-    }
-    if (directionPossible.charAt(2) == 'H') {
-        System.out.println("\n\t- Haut");
-    }
-    if (directionPossible.charAt(3) == 'B') {
-        System.out.println("\n\t- Bas");
-    }
-    entreePourPasser(sc);
-}
-
-
 }
