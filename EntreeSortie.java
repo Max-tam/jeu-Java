@@ -69,7 +69,7 @@ public class EntreeSortie {
         if (directionPossible.charAt(3) == 'B') {
             System.out.println("\n\t- Bas");
         }
-        char direction;
+        char direction = '0';
         boolean choixDirectionNonPris = true;
         while (choixDirectionNonPris) 
         {
@@ -91,6 +91,6 @@ public class EntreeSortie {
                 choixIncorrect(sc);
             }
         }
-    return 't'; // bug sur la porté de variable (char direction)
+    return direction;
     }
 }
