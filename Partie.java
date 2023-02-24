@@ -132,11 +132,12 @@ public class Partie {
         //while (menuPartie) {
             
         //}
-        Donjon1.getCarte();
-        Donjon1.metAJourCarte(hero);
-        Donjon1.getCarte();
-        String directionPossibleHero = hero.directionPossible(Donjon1);
-        System.out.println(directionPossibleHero);
+        Donjon1.getCarte(); // affiche la carte sans modification
+        Donjon1.metAJourCarte(hero); // met à jour la carte avec la position du joueur
+        Donjon1.getCarte(); // affiche la carte avec la position du joueur
+        String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
+        System.out.println(directionPossibleHero); // affiche la suite des 4 caractères.
+        entreeSortie.propositionDirectionPossible(directionPossibleHero,sc);
 
         /* 
          * - affichage de la map avec position du joueur (0)

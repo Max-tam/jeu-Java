@@ -25,10 +25,14 @@ public class EntreeSortie {
         return choixMenuPrincipal;
     }
 
+    public void entreePourPasser(Scanner sc) { // procedure qui met en place la fonctionnalité appuyer sur entrée pour aller à la suite
+        System.out.println("\nAppuyer sur Entree pour continuer");
+        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+    }
+
     public void choixIncorrect(Scanner sc) {
         System.out.println( "==| Choix non correct |=="+
                             "\nAppuyer sur Entree pour revenir au menu");
-        sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
         sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
     } 
 
@@ -47,10 +51,26 @@ public class EntreeSortie {
                            "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
                            "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
                            "\n\nbonne chance !"+
-                           "\n-----------------------------\n"+
-                           "\nAppuyer sur Entree pour continuer");
+                           "\n-----------------------------\n");
         sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
-        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+        entreePourPasser(sc);
     }
+public void propositionDirectionPossible(String directionPossible, Scanner sc) { // possibilité determiné grace au code DGHB
+    System.out.println("\nVoici vos possibilités de déplacement:\n");
+    if (directionPossible.charAt(0) == 'D') { // .charAt(int indice) permet de récuperer le caractère d'un String
+        System.out.println("\n\t- Droite");
+    }
+    if (directionPossible.charAt(1) == 'G') {
+        System.out.println("\n\t- Gauche");
+    }
+    if (directionPossible.charAt(2) == 'H') {
+        System.out.println("\n\t- Haut");
+    }
+    if (directionPossible.charAt(3) == 'B') {
+        System.out.println("\n\t- Bas");
+    }
+    entreePourPasser(sc);
+}
+
 
 }
