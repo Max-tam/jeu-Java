@@ -69,28 +69,42 @@ public class EntreeSortie {
         if (directionPossible.charAt(3) == 'B') {
             System.out.println("\n\t- Bas");
         }
-        char direction = '0';
+        char direction = '0'; // code 0 correspond à ne bouge pas
         boolean choixDirectionNonPris = true;
         while (choixDirectionNonPris) 
         {
-            System.out.print("\nvotre choix (initiale de la direction:\n\n-> ");
+            System.out.print("\nvotre choix = initiale de la direction (D/G/H/B):\n\n-> ");
             direction = sc.next().charAt(0);
             // première verification si la saisie prend la valeur D,G,H ou B
             if (direction == 'D' || direction == 'G' || direction == 'H' || direction == 'B') {
-                // deuxième verification si la saisie correspon à un choix possible
+                // deuxième verification si la saisie correspond à un choix possible
                 if (directionPossible.charAt(0) == direction || directionPossible.charAt(1) == direction || directionPossible.charAt(2) == direction || directionPossible.charAt(3) == direction) {
                     choixDirectionNonPris = false;
+                    sc.nextLine(); // Entree texte à vide
                     entreePourPasser(sc);
                     return direction;   
                 }
                 else {
-                    choixIncorrect(sc);
+                    choixIncorrect(sc); // si second teste passe pas
                 }
             }
             else {
-                choixIncorrect(sc);
+                choixIncorrect(sc); // si premier teste passe pas
             }
         }
     return direction;
+    }
+
+    public int menuEnPartie(Scanner sc) {
+        System.out.println();
+        System.out.println( "------| MENU EN JEUX |-------\n\n"+
+                            "----------------------------|\n"+
+                            "|-----< continuer : 1 >-----|\n"+
+                            "|-----<  quitter : 2  >-----|\n"+
+                            "-----------------------------\n\n");
+        System.out.print("-> ");
+        int choixMenuEnPartie = sc.nextInt();
+        System.out.println();
+        return choixMenuEnPartie;
     }
 }

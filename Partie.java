@@ -73,6 +73,25 @@ public class Partie {
         }
     }
 
+    public void changementDePositionJoueur(char directionPrise, Hero joueur) {
+        // si direction retourné est droite (D)
+        if (directionPrise == 'D') {
+            joueur.SetPosXHero(joueur.GetPosXHero()+1);
+        }
+        // si direction retourné est gauche (G)
+        if (directionPrise == 'G') {
+            joueur.SetPosXHero(joueur.GetPosXHero()-1);
+        }
+        // si direction retourné est haut (H)
+        if (directionPrise == 'H') {
+            joueur.SetPosYHero(joueur.GetPosYHero()-1);
+        }
+        // si direction retourné est bas (B)
+        if (directionPrise == 'B') {
+            joueur.SetPosYHero(joueur.GetPosYHero()+1);
+        }
+    }
+
     public void initialisationEtPartie(Scanner sc, EntreeSortie entreeSortie) { // Initialisation + gestion de la partie
 
         // ==========| INITIALISATION |==========
@@ -126,24 +145,30 @@ public class Partie {
         // procedure introduction du jeu (but)
         entreeSortie.introduction(pseudoJoueur, sc);
 
-        // procedure lancement menu de partie
-        boolean menuPartie = true;
+        // procedure lancement partie
+        boolean Partie = true;
         
-        //while (menuPartie) {
-            
-        //}
-        Donjon1.getCarte(); // affiche la carte sans modification
-        Donjon1.metAJourCarte(hero); // met à jour la carte avec la position du joueur
-        Donjon1.getCarte(); // affiche la carte avec la position du joueur
-        String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
-        System.out.println(directionPossibleHero); // affiche la suite des 4 caractères.
-        char result = entreeSortie.choixDirectionPossible(directionPossibleHero,sc);
-        System.out.println(result);
-        /* 
-         * - affichage de la map avec position du joueur (0)
-         * - joueur peut se déplacer sans sortir de la map (x)
-         * - affichage de la map met à jour la position du joueur à chaque fois (0)
-         */
+        while (Partie) {
+            System.out.println("Voici votre position sur la carte:");
+            Donjon1.metAJourCarte(hero); // met à jour la carte avec la position du joueur
+            Donjon1.getCarte(); // affiche la carte avec la position du joueur
+            System.out.println("\nVous pouvez identifier votre position avec le symbole X et les case 0 sont des cases vides");
+
+            String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
+            char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
+
+            changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
+            int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
+            if (choixMenuEnPartie == 1) {
+                continue;
+            }
+            if (choixMenuEnPartie == 2) {
+                Partie = false;    
+            }
+            else {
+                entreeSortie.choixIncorrect(sc);
+            }
+        }
 
     }
 
