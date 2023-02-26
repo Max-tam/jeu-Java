@@ -6,6 +6,8 @@ public class Coffre {
     private int posX;
     private int posY;
 
+/*=========================| Constructeur |=========================*/
+
     public Coffre(Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre,int posX,int posY) { // Constucteur de la Class Coffre
         this.estOuvert = false;
         this.artefactsDansCoffre = artefactsDansCoffre;
@@ -13,6 +15,8 @@ public class Coffre {
         this.posX = posX;
         this.posY = posY;
     }
+
+/*=========================| Get / Set |=========================*/
 
     public int getPosX() { // retourne la position horizontale du coffre
         return posX;
@@ -52,6 +56,23 @@ public class Coffre {
 
     public void setArmesDansCoffre(Arme[] armesDansCoffre) { // defini la liste des armes dans le coffre
         this.armesDansCoffre = armesDansCoffre;
+    }
+
+/*=========================| Fonction / Procedure |=========================*/
+
+    /* BUG SUR AFFICHAGE DES OBJERS */
+    public void objetDansCoffre() { // permet d'afficher à l'utilisateur les armes et artefacts dans le coffre
+        System.out.println("\nArme(s) dans le coffre:\n");
+        for (int i = 0; i < this.armesDansCoffre.length; i++) {
+            System.out.print(this.armesDansCoffre[i]);
+            System.out.print(' ');
+        }
+        System.out.println("\n\nArtefact(s) dans le coffre:\n");
+        for (int i = 0; i < this.artefactsDansCoffre.length; i++) {
+            System.out.print(this.artefactsDansCoffre[i]);
+            System.out.print(' ');
+        }
+        System.out.println();
     }
 
 }

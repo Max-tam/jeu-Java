@@ -164,7 +164,7 @@ public class Partie {
             // gestion interaction coffre
             boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1);
             if (estSurLeCoffre1) {
-
+                coffre1.objetDansCoffre();
             }
 
             // gestion menu en jeux
