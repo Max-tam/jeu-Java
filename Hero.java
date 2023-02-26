@@ -44,7 +44,7 @@ public class Hero extends Entite {
 
 /*=========================| Fonction / Procedure |=========================*/
 
-    public String directionPossible(Donjon carte) {
+    public String directionPossible(Donjon carte) { // permet de déterminer les directions que peut prendre
         String directionPossible; // ordre DGHB (droite / Gauche / Haut / Bas), prend la valeur 0 si pas possible
         
         // Regarde si le bloc à droite et possible
@@ -80,4 +80,12 @@ public class Hero extends Entite {
         }
         return directionPossible;
     }
+
+    public boolean estSurUnCoffre(Coffre coffre) { // permet de determiner si le joueur est sur une case coffre
+        if (this.GetPosXHero() == coffre.getPosX() && this.GetPosYHero() == coffre.getPosY()) {
+            return true;
+        }
+        else { return false; }
+    }
+
 }

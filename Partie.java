@@ -150,16 +150,24 @@ public class Partie {
         int nombreDeTours = 0;
         
         while (Partie) {
+            // gestion affichage de la carte
             System.out.println("Voici votre position sur la carte:");
             Donjon1.metAJourCarte(hero,coffre1); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
             System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
+            // gestion mouvement du joueur
             String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
             char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
-
             changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
 
+            // gestion interaction coffre
+            boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1);
+            if (estSurLeCoffre1) {
+
+            }
+
+            // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
                 int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
                 if (choixMenuEnPartie == 2) { // si le joueur demande à quitter
