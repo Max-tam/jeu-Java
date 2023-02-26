@@ -44,10 +44,10 @@ public class Partie {
 
     public void gestionMenuPrincipal(Scanner sc, EntreeSortie entreeSortie) { // Gestion du Menu Principal
 
+        entreeSortie.titre();
         while (partieEnCours) {
 
             //affichage titre du jeu
-            entreeSortie.titre();
             int choixMenuPrincipal = entreeSortie.menuPrincipal(sc);
             switch (choixMenuPrincipal) {
                 case 1:
@@ -147,6 +147,7 @@ public class Partie {
 
         // procedure lancement partie
         boolean Partie = true;
+        int nombreDeTours = 0;
         
         while (Partie) {
             System.out.println("Voici votre position sur la carte:");
@@ -158,16 +159,17 @@ public class Partie {
             char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
 
             changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
-            int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
-            if (choixMenuEnPartie == 1) {
-                continue;
+
+            if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
+                int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
+                if (choixMenuEnPartie == 2) { // si le joueur demande à quitter
+                    Partie = false;    
+                }
+                else if (choixMenuEnPartie != 1) { // si le joueur ne demande pas à continuer non plus
+                    entreeSortie.choixIncorrect(sc);
+                }
             }
-            if (choixMenuEnPartie == 2) {
-                Partie = false;    
-            }
-            else {
-                entreeSortie.choixIncorrect(sc);
-            }
+            ++nombreDeTours;
         }
 
     }
