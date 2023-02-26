@@ -44,10 +44,10 @@ public class Partie {
 
     public void gestionMenuPrincipal(Scanner sc, EntreeSortie entreeSortie) { // Gestion du Menu Principal
 
+        entreeSortie.titre();
         while (partieEnCours) {
 
             //affichage titre du jeu
-            entreeSortie.titre();
             int choixMenuPrincipal = entreeSortie.menuPrincipal(sc);
             switch (choixMenuPrincipal) {
                 case 1:
@@ -67,9 +67,28 @@ public class Partie {
                     this.partieEnCours = false;
                     break;
                 default:
-                    System.out.println("==| Choix non correct |==");
+                    entreeSortie.choixIncorrect(sc);
                     break;
             }
+        }
+    }
+
+    public void changementDePositionJoueur(char directionPrise, Hero joueur) {
+        // si direction retourné est droite (D)
+        if (directionPrise == 'D') {
+            joueur.SetPosXHero(joueur.GetPosXHero()+1);
+        }
+        // si direction retourné est gauche (G)
+        if (directionPrise == 'G') {
+            joueur.SetPosXHero(joueur.GetPosXHero()-1);
+        }
+        // si direction retourné est haut (H)
+        if (directionPrise == 'H') {
+            joueur.SetPosYHero(joueur.GetPosYHero()-1);
+        }
+        // si direction retourné est bas (B)
+        if (directionPrise == 'B') {
+            joueur.SetPosYHero(joueur.GetPosYHero()+1);
         }
     }
 
@@ -106,7 +125,7 @@ public class Partie {
 
         // Initialisation Joueur
         String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
-        Hero hero = new Hero(1,1,100,armeMain,0,pseudoJoueur);
+        Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur);
 
         // Initialisation Carte
         char [][] carte = {{'0','0','0','0','0'},
@@ -123,8 +142,35 @@ public class Partie {
 
         //==========| PENDANT PARTIE |==========
 
-        // introduction du jeu (but)
+        // procedure introduction du jeu (but)
         entreeSortie.introduction(pseudoJoueur, sc);
+
+        // procedure lancement partie
+        boolean Partie = true;
+        int nombreDeTours = 0;
+        
+        while (Partie) {
+            System.out.println("Voici votre position sur la carte:");
+            Donjon1.metAJourCarte(hero); // met à jour la carte avec la position du joueur
+            Donjon1.getCarte(); // affiche la carte avec la position du joueur
+            System.out.println("\nVous pouvez identifier votre position avec le symbole X et les case 0 sont des cases vides");
+
+            String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
+            char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
+
+            changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
+
+            if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
+                int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
+                if (choixMenuEnPartie == 2) { // si le joueur demande à quitter
+                    Partie = false;    
+                }
+                else if (choixMenuEnPartie != 1) { // si le joueur ne demande pas à continuer non plus
+                    entreeSortie.choixIncorrect(sc);
+                }
+            }
+            ++nombreDeTours;
+        }
 
     }
 

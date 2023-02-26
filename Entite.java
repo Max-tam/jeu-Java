@@ -43,7 +43,7 @@ public class Entite {
 
     public void SetPosYHero(int y) // definir coordonnée axe y
     {
-        this.posX = y;
+        this.posY = y;
     }
 
     public int GetPosYHero() // recuperer coordonnée axe y

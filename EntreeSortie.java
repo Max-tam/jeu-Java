@@ -25,6 +25,17 @@ public class EntreeSortie {
         return choixMenuPrincipal;
     }
 
+    public void entreePourPasser(Scanner sc) { // procedure qui met en place la fonctionnalité appuyer sur entrée pour aller à la suite
+        System.out.println("\nAppuyer sur Entree pour continuer");
+        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+    }
+
+    public void choixIncorrect(Scanner sc) {
+        System.out.println( "==| Choix non correct |=="+
+                            "\nAppuyer sur Entree pour refaire un choix");
+        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+    } 
+
     public String InitalisationPartie(Scanner sc) {
 
         System.out.println();
@@ -39,11 +50,61 @@ public class EntreeSortie {
                            "-----------------------------"+
                            "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
                            "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
-                           "\n\n"+pseudoJoueur+" bonne chance !"+
-                           "\n-----------------------------\n"+
-                           "\nAppuyer sur Entree pour continuer");
+                           "\n\nbonne chance !"+
+                           "\n-----------------------------\n");
         sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
-        sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
+        entreePourPasser(sc);
+    }
+    public char choixDirectionPossible(String directionPossible, Scanner sc) { // possibilité determiné grace au code DGHB
+        System.out.println("\nVoici vos possibilités de déplacement:\n");
+        if (directionPossible.charAt(0) == 'D') { // .charAt(int indice) permet de récuperer le caractère d'un String
+            System.out.println("\n\t- Droite");
+        }
+        if (directionPossible.charAt(1) == 'G') {
+            System.out.println("\n\t- Gauche");
+        }
+        if (directionPossible.charAt(2) == 'H') {
+            System.out.println("\n\t- Haut");
+        }
+        if (directionPossible.charAt(3) == 'B') {
+            System.out.println("\n\t- Bas");
+        }
+        char direction = '0'; // code 0 correspond à ne bouge pas
+        boolean choixDirectionNonPris = true;
+        while (choixDirectionNonPris) 
+        {
+            System.out.print("\nvotre choix = initiale de la direction (D/G/H/B):\n\n-> ");
+            direction = sc.next().charAt(0);
+            // première verification si la saisie prend la valeur D,G,H ou B
+            if (direction == 'D' || direction == 'G' || direction == 'H' || direction == 'B') {
+                // deuxième verification si la saisie correspond à un choix possible
+                if (directionPossible.charAt(0) == direction || directionPossible.charAt(1) == direction || directionPossible.charAt(2) == direction || directionPossible.charAt(3) == direction) {
+                    choixDirectionNonPris = false;
+                    sc.nextLine(); // Entree texte à vide
+                    entreePourPasser(sc);
+                    return direction;   
+                }
+                else {
+                    choixIncorrect(sc); // si second teste passe pas
+                }
+            }
+            else {
+                choixIncorrect(sc); // si premier teste passe pas
+            }
+        }
+    return direction;
     }
 
+    public int menuEnPartie(Scanner sc) {
+        System.out.println();
+        System.out.println( "------| MENU EN JEUX |-------\n\n"+
+                            "----------------------------|\n"+
+                            "|-----< continuer : 1 >-----|\n"+
+                            "|-----<  quitter : 2  >-----|\n"+
+                            "-----------------------------\n\n");
+        System.out.print("-> ");
+        int choixMenuEnPartie = sc.nextInt();
+        System.out.println();
+        return choixMenuEnPartie;
+    }
 }
