@@ -5,13 +5,28 @@ public class Coffre {
     private Arme [] armesDansCoffre;
     private int posX;
     private int posY;
-    // coordonnée
 
     public Coffre(Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre,int posX,int posY) { // Constucteur de la Class Coffre
         this.estOuvert = false;
         this.artefactsDansCoffre = artefactsDansCoffre;
         this.armesDansCoffre = armesDansCoffre;
         this.posX = posX;
+        this.posY = posY;
+    }
+
+    public int getPosX() { // retourne la position horizontale du coffre
+        return posX;
+    }
+
+    public void setPosX(int posX) { // determine la position horizontale du coffre
+        this.posX = posX;
+    }
+
+    public int getPosY() { // retourne la position verticale du coffre
+        return posY;
+    }
+
+    public void setPosY(int posY) { // determine la position verticale du coffre
         this.posY = posY;
     }
 

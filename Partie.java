@@ -151,9 +151,9 @@ public class Partie {
         
         while (Partie) {
             System.out.println("Voici votre position sur la carte:");
-            Donjon1.metAJourCarte(hero); // met à jour la carte avec la position du joueur
+            Donjon1.metAJourCarte(hero,coffre1); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
-            System.out.println("\nVous pouvez identifier votre position avec le symbole X et les case 0 sont des cases vides");
+            System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
             String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
             char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
