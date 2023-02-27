@@ -62,17 +62,17 @@ public class Coffre {
 
     /* BUG SUR AFFICHAGE DES OBJERS */
     public void objetDansCoffre() { // permet d'afficher à l'utilisateur les armes et artefacts dans le coffre
-        System.out.println("\nArme(s) dans le coffre:\n");
+        System.out.println("\nArme(s) dans le coffre:\n\n");
         for (int i = 0; i < this.armesDansCoffre.length; i++) {
-            System.out.print(this.armesDansCoffre[i]);
-            System.out.print(' ');
+            System.out.print("\t- ");
+            System.out.println(this.armesDansCoffre[i].GetNomArme());
         }
-        System.out.println("\n\nArtefact(s) dans le coffre:\n");
+        System.out.println("\n\nArtefact(s) dans le coffre:\n\n");
         for (int i = 0; i < this.artefactsDansCoffre.length; i++) {
-            System.out.print(this.artefactsDansCoffre[i]);
-            System.out.print(' ');
+            System.out.print("\t- ");
+            System.out.println(this.artefactsDansCoffre[i].getNomArtefact());
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
 }

@@ -80,8 +80,6 @@ public class EntreeSortie {
                 // deuxième verification si la saisie correspond à un choix possible
                 if (directionPossible.charAt(0) == direction || directionPossible.charAt(1) == direction || directionPossible.charAt(2) == direction || directionPossible.charAt(3) == direction) {
                     choixDirectionNonPris = false;
-                    sc.nextLine(); // Entree texte à vide
-                    entreePourPasser(sc);
                     return direction;   
                 }
                 else {
