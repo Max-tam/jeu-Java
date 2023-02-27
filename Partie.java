@@ -73,25 +73,6 @@ public class Partie {
         }
     }
 
-    public void changementDePositionJoueur(char directionPrise, Hero joueur) {
-        // si direction retourné est droite (D)
-        if (directionPrise == 'D') {
-            joueur.SetPosXHero(joueur.GetPosXHero()+1);
-        }
-        // si direction retourné est gauche (G)
-        if (directionPrise == 'G') {
-            joueur.SetPosXHero(joueur.GetPosXHero()-1);
-        }
-        // si direction retourné est haut (H)
-        if (directionPrise == 'H') {
-            joueur.SetPosYHero(joueur.GetPosYHero()-1);
-        }
-        // si direction retourné est bas (B)
-        if (directionPrise == 'B') {
-            joueur.SetPosYHero(joueur.GetPosYHero()+1);
-        }
-    }
-
     public void initialisationEtPartie(Scanner sc, EntreeSortie entreeSortie) { // Initialisation + gestion de la partie
 
         // ==========| INITIALISATION |==========
@@ -159,12 +140,13 @@ public class Partie {
             // gestion mouvement du joueur
             String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
             char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
-            changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
+            hero.changementDePositionJoueur(choixDirectionUtilisateur); // change les coordonnées du joueur
 
             // gestion interaction coffre 1
             boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1);
             if (estSurLeCoffre1) {
                 entreeSortie.interactionCoffre(coffre1,sc);
+                int reponseMenuCoffre = entreeSortie.menuInteractionCoffre(sc);
             }
 
             // gestion menu en jeux

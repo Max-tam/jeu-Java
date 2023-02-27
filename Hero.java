@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hero extends Entite {
 
     private String nomHero;
-    private Arme [] inventaireArmes;
-    private Potion [] inventairePotions;
+    private List<Arme> inventaireArmes = new ArrayList<Arme>();
+    private List<Potion> inventairePotions = new ArrayList<Potion>();
+    private List<Artefact> inventaireArtefacts = new ArrayList<Artefact>();
 
     /*=========================| Constructeur |=========================*/
 
@@ -14,22 +18,28 @@ public class Hero extends Entite {
 
     /*=========================| Get / Set |=========================*/
 
-    public Potion[] getInventairePotions() {
-        return inventairePotions;
-    }
-
-    public void setInventairePotions(Potion[] inventairePotions) {
-        this.inventairePotions = inventairePotions;
-    }
-
-    public Arme[] getInventaireArmes() // recuperer l'inventaire d'arme
-    {
+    public List<Arme> getInventaireArmes() {
         return inventaireArmes;
     }
 
-    public void setInventaireArmes(Arme[] inventaireArmes) // l'inventaire d'arme
-    {
+    public void setInventaireArmes(List<Arme> inventaireArmes) {
         this.inventaireArmes = inventaireArmes;
+    }
+
+    public void setInventairePotions(List<Potion> inventairePotions) {
+        this.inventairePotions = inventairePotions;
+    }
+
+    public List<Potion> getInventairePotions() {
+        return inventairePotions;
+    }
+
+    public void setInventaireArtefacts(List<Artefact> inventaireArtefacts) {
+        this.inventaireArtefacts = inventaireArtefacts;
+    }
+
+    public List<Artefact> getInventaireArtefacts() {
+        return inventaireArtefacts;
     }
 
     public String getNomHero() // recuperer le nom du hero
@@ -87,5 +97,32 @@ public class Hero extends Entite {
         }
         else { return false; }
     }
+
+    public void changementDePositionJoueur(char directionPrise) {
+        // si direction retourné est droite (D)
+        if (directionPrise == 'D') {
+            this.SetPosXHero(this.GetPosXHero()+1);
+        }
+        // si direction retourné est gauche (G)
+        if (directionPrise == 'G') {
+            this.SetPosXHero(this.GetPosXHero()-1);
+        }
+        // si direction retourné est haut (H)
+        if (directionPrise == 'H') {
+            this.SetPosYHero(this.GetPosYHero()-1);
+        }
+        // si direction retourné est bas (B)
+        if (directionPrise == 'B') {
+            this.SetPosYHero(this.GetPosYHero()+1);
+        }
+    }
+
+    public void transfertArmeDansInventaire(Arme[] listeArme) {
+        for (int i = 0; i < listeArme.length; i++) {
+            //this.inventaireArmes
+        }
+    }
+
+    
 
 }

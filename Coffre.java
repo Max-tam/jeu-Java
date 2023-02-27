@@ -88,4 +88,13 @@ public class Coffre {
         System.out.println();
     }
 
+    public void gestionMenuCoffre(int choix) {
+        if (choix == 1) {
+            
+        }
+    }
+
+    public void donneArmeAuHero(Hero joueur) {
+    }
+
 }
