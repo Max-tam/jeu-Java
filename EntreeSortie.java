@@ -120,4 +120,18 @@ public class EntreeSortie {
         this.entreePourPasser(sc);
     }
 
+    public int menuInteractionCoffre(Scanner sc) {
+        System.out.println();
+        System.out.println( "------------| MENU COFFRE |------------\n\n"+
+                            "--------------------------------------|\n"+
+                            "|-----<   prendre arme(s) : 1   >-----|\n"+
+                            "|-----< prendre artefact(s) : 2 >-----|\n"+
+                            "|-----<   ne rien prendre : 3   >-----|\n"+
+                            "---------------------------------------\n\n");
+        System.out.print("-> ");
+        int choixMenuCoffre = sc.nextInt();
+        System.out.println();
+        return choixMenuCoffre;
+    }
+
 }
