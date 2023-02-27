@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Partie {
@@ -99,8 +101,11 @@ public class Partie {
 
         // Initialisation Coffre
 
-        Artefact [] listeArtefactCoffre1 = {artefactAttaque};
-        Arme [] listeArmeCoffre1 = {armeArc};
+        List<Artefact> listeArtefactCoffre1 = new ArrayList<Artefact>();
+        listeArtefactCoffre1.add(artefactAttaque);
+        
+        List<Arme> listeArmeCoffre1 = new ArrayList<Arme>();
+        listeArmeCoffre1.add(armeArc);
 
         Coffre coffre1 = new Coffre(listeArtefactCoffre1, listeArmeCoffre1, 1, 0);
 

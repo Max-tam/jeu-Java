@@ -1,14 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coffre {
     
     private boolean estOuvert;
-    private Artefact [] artefactsDansCoffre;
-    private Arme [] armesDansCoffre;
+    private List<Artefact> artefactsDansCoffre = new ArrayList<Artefact>();
+    private List<Arme> armesDansCoffre = new ArrayList<Arme>();
     private int posX;
     private int posY;
 
 /*=========================| Constructeur |=========================*/
 
-    public Coffre(Artefact[] artefactsDansCoffre, Arme[] armesDansCoffre,int posX,int posY) { // Constucteur de la Class Coffre
+    public Coffre(List<Artefact> artefactsDansCoffre, List<Arme> armesDansCoffre, int posX, int posY) {// Constucteur de la Class Coffre
         this.estOuvert = false;
         this.artefactsDansCoffre = artefactsDansCoffre;
         this.armesDansCoffre = armesDansCoffre;
@@ -17,6 +20,22 @@ public class Coffre {
     }
 
 /*=========================| Get / Set |=========================*/
+
+    public List<Artefact> getArtefactsDansCoffre() {
+        return artefactsDansCoffre;
+    }
+
+    public void setArtefactsDansCoffre(List<Artefact> artefactsDansCoffre) {
+        this.artefactsDansCoffre = artefactsDansCoffre;
+    }
+
+    public List<Arme> getArmesDansCoffre() {
+        return armesDansCoffre;
+    }
+
+    public void setArmesDansCoffre(List<Arme> armesDansCoffre) {
+        this.armesDansCoffre = armesDansCoffre;
+    }
 
     public int getPosX() { // retourne la position horizontale du coffre
         return posX;
@@ -42,48 +61,34 @@ public class Coffre {
         this.estOuvert = estOuvert;
     }
 
-    public Artefact[] getArtefactsDansCoffre() { // retourne la liste des artefacts dans le coffre
-        return artefactsDansCoffre;
-    }
 
-    public void setArtefactsDansCoffre(Artefact[] artefactsDansCoffre) { // defini la liste des artefacts dans le coffre
-        this.artefactsDansCoffre = artefactsDansCoffre;
-    }
-
-    public Arme[] getArmesDansCoffre() { // retourne la liste des armes dans le coffre
-        return armesDansCoffre;
-    }
-
-    public void setArmesDansCoffre(Arme[] armesDansCoffre) { // defini la liste des armes dans le coffre
-        this.armesDansCoffre = armesDansCoffre;
-    }
 
 /*=========================| Fonction / Procedure |=========================*/
 
     public void armesDansCoffre() {// permet d'afficher à l'utilisateur les armes dans le coffre
-        for (int i = 0; i < this.armesDansCoffre.length; i++) {
+        for (int i = 0; i < this.armesDansCoffre.size(); i++) {
             System.out.print("\t- ");
-            System.out.println(this.armesDansCoffre[i].GetNomArme());
+            System.out.println(this.armesDansCoffre.get(i).GetNomArme());
         }
     }
 
     public void artefactDansCoffre() { // permet d'afficher à l'utilisateur les artefacts dans le coffre
-        for (int i = 0; i < this.artefactsDansCoffre.length; i++) {
+        for (int i = 0; i < this.artefactsDansCoffre.size(); i++) {
             System.out.print("\t- ");
-            System.out.println(this.artefactsDansCoffre[i].getNomArtefact());
+            System.out.println(this.artefactsDansCoffre.get(i).getNomArtefact());
         }
     }
 
     public void objetDansCoffre() { // permet d'afficher à l'utilisateur les armes et artefacts dans le coffre
         System.out.println("\nArme(s) dans le coffre:\n");
-        for (int i = 0; i < this.armesDansCoffre.length; i++) {
+        for (int i = 0; i < this.armesDansCoffre.size(); i++) {
             System.out.print("\t- ");
-            System.out.println(this.armesDansCoffre[i].GetNomArme());
+            System.out.println(this.armesDansCoffre.get(i).GetNomArme());
         }
         System.out.println("\nArtefact(s) dans le coffre:\n");
-        for (int i = 0; i < this.artefactsDansCoffre.length; i++) {
+        for (int i = 0; i < this.artefactsDansCoffre.size(); i++) {
             System.out.print("\t- ");
-            System.out.println(this.artefactsDansCoffre[i].getNomArtefact());
+            System.out.println(this.artefactsDansCoffre.get(i).getNomArtefact());
         }
         System.out.println();
     }
