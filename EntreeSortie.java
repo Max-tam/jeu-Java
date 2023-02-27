@@ -47,27 +47,28 @@ public class EntreeSortie {
 
     public void introduction(String pseudoJoueur, Scanner sc) {
         System.out.println("\n"+
-                           "-----------------------------"+
-                           "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
-                           "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
-                           "\n\nbonne chance !"+
-                           "\n-----------------------------\n");
+                           "-------------------------------------------------------------------------------------------------------------------\n"+
+                           "| Bonjour "+pseudoJoueur+", Bienvenue sur java RPG.                                                                \n"+
+                           "| Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux.  \n"+
+                           "|                                                                                                                  \n"+
+                           "| bonne chance !                                                                                                   \n"+
+                           "-------------------------------------------------------------------------------------------------------------------\n");
         sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
         entreePourPasser(sc);
     }
     public char choixDirectionPossible(String directionPossible, Scanner sc) { // possibilité determiné grace au code DGHB
         System.out.println("\nVoici vos possibilités de déplacement:\n");
         if (directionPossible.charAt(0) == 'D') { // .charAt(int indice) permet de récuperer le caractère d'un String
-            System.out.println("\n\t- Droite");
+            System.out.println("\t- Droite");
         }
         if (directionPossible.charAt(1) == 'G') {
-            System.out.println("\n\t- Gauche");
+            System.out.println("\t- Gauche");
         }
         if (directionPossible.charAt(2) == 'H') {
-            System.out.println("\n\t- Haut");
+            System.out.println("\t- Haut");
         }
         if (directionPossible.charAt(3) == 'B') {
-            System.out.println("\n\t- Bas");
+            System.out.println("\t- Bas");
         }
         char direction = '0'; // code 0 correspond à ne bouge pas
         boolean choixDirectionNonPris = true;
@@ -105,4 +106,5 @@ public class EntreeSortie {
         System.out.println();
         return choixMenuEnPartie;
     }
+
 }
