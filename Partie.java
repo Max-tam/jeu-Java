@@ -161,10 +161,10 @@ public class Partie {
             char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
             changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
 
-            // gestion interaction coffre
+            // gestion interaction coffre 1
             boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1);
             if (estSurLeCoffre1) {
-                coffre1.objetDansCoffre();
+                entreeSortie.interactionCoffre(coffre1,sc);
             }
 
             // gestion menu en jeux

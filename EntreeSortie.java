@@ -107,4 +107,17 @@ public class EntreeSortie {
         return choixMenuEnPartie;
     }
 
+    public void interactionCoffre(Coffre coffre,Scanner sc) {
+        System.out.println();
+        System.out.println("------------------------------------------------------------\n"+
+                           "Vous êtes sur une case coffre, voici son contenu:\n\n");
+        System.out.println("arme(s) dans le coffre:\n");
+        coffre.armesDansCoffre();
+        System.out.println("\nartefact(s) dans le coffre:\n");
+        coffre.artefactDansCoffre();
+        System.out.println("------------------------------------------------------------");
+        sc.nextLine();
+        this.entreePourPasser(sc);
+    }
+
 }

@@ -18,5 +18,4 @@ public class Main {
         // fermeture du Scanner
         sc.close();
     }
-    
 }
