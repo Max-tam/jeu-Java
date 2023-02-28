@@ -103,6 +103,7 @@ public class Partie {
 
         List<Artefact> listeArtefactCoffre1 = new ArrayList<Artefact>();
         listeArtefactCoffre1.add(artefactAttaque);
+        listeArtefactCoffre1.add(artefactDefense);
         
         List<Arme> listeArmeCoffre1 = new ArrayList<Arme>();
         listeArmeCoffre1.add(armeArc);
@@ -157,7 +158,10 @@ public class Partie {
                     hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
                     entreeSortie.affichageInventaireArme(sc, hero); 
                 }
-
+                if (reponseMenuCoffre == 2) { // transfert les artefact dans l'inventaire du joueur
+                    hero.transfertArtefactDansInventaire(coffre1.getArtefactsDansCoffre());
+                    entreeSortie.affichageInventaireArtefact(sc, hero);             
+                }
             }
 
             // gestion menu en jeux

@@ -145,5 +145,16 @@ public class EntreeSortie {
             System.out.print("- ");
             System.out.println(hero.getInventaireArmes().get(indexArme).GetNomArme());
         }
+        System.out.println();
+    }
+
+    public void affichageInventaireArtefact(Scanner sc ,Hero hero) {
+        System.out.println( "\n------------| Inventaire Artefact |------------\n");
+        System.out.println( "                 -| Inventaire |-                \n");
+        for (int indexArme = 0; indexArme < hero.getInventaireArtefacts().size(); indexArme++) {
+            System.out.print("- ");
+            System.out.println(hero.getInventaireArtefacts().get(indexArme).getNomArtefact());
+        }
+        System.out.println();
     }
 }
