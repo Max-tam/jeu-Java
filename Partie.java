@@ -114,6 +114,13 @@ public class Partie {
         String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
         Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur);
 
+        List<Potion> listePotionHero = new ArrayList<Potion>();
+        listePotionHero.add(potionAttaque);
+        listePotionHero.add(potionDefense);
+        listePotionHero.add(potionVie);
+
+        hero.setInventairePotions(listePotionHero);
+
         // Initialisation Carte
         char [][] carte = {{'0','0','0','0','0'},
                            {'0','0','0','0','0'},
