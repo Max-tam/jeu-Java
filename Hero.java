@@ -7,16 +7,26 @@ public class Hero extends Entite {
     private List<Arme> inventaireArmes = new ArrayList<Arme>();
     private List<Potion> inventairePotions = new ArrayList<Potion>();
     private List<Artefact> inventaireArtefacts = new ArrayList<Artefact>();
+    private int experience;
 
     /*=========================| Constructeur |=========================*/
 
-    public Hero(int posY,int posX, int PV, Arme Arme, int defense, String nomHero)  // constructeur de la class Hero
+    public Hero(int posY,int posX, int PV, Arme Arme, int defense, String nomHero, int velocite)  // constructeur de la class Hero
     {
-        super(posY, posX, PV, Arme, defense);
+        super(posY, posX, PV, Arme, defense, velocite);
         this.nomHero = nomHero;
+        this.experience = 0;
     }
 
     /*=========================| Get / Set |=========================*/
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
 
     public List<Arme> getInventaireArmes() {
         return inventaireArmes;

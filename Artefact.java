@@ -16,4 +16,12 @@ public class Artefact{
         this.nomArtefact = nomArtefact;
     }
 
+    public Effet getNomEffet() {
+        return nomEffet;
+    }
+
+    public void setNomEffet(Effet nomEffet) {
+        this.nomEffet = nomEffet;
+    }
+
 }

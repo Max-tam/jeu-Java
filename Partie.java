@@ -123,7 +123,7 @@ public class Partie {
 
         // Initialisation Joueur
         String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
-        Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur);
+        Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur,10);
 
         List<Potion> listePotionHero = new ArrayList<Potion>();
         listePotionHero.add(potionAttaque);
@@ -142,8 +142,8 @@ public class Partie {
         Donjon Donjon1 = new Donjon(carte);
         
         // Initialisation Monstre
-        Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
-        Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0);
+        Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0,5);
+        Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0,25);
 
         //==========| PENDANT PARTIE |==========
 
@@ -222,12 +222,11 @@ public class Partie {
 
             // gestion Monstre Zombie
             boolean estSurMonstreZombie = hero.estSurUnMonstre(zombie);
-            if (estSurMonstreZombie) {
+            if (estSurMonstreZombie && !zombie.getEstMort()) {
                 //introduction au combat
                 entreeSortie.introCombat(zombie, hero, sc);
                 //lancement combat
             }
-
 
             // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)

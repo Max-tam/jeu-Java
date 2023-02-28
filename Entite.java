@@ -3,16 +3,26 @@ public class Entite {
     private int posX; // coordonnee axe x
     private int posY; // coordonnee axe y
     private int PV; // point de vie du hero
-    private Arme Arme;
-    private int defense;
+    private Arme Arme; // arme par défaut
+    private int defense; // point de défense
+    private int velocite; // la velocité determine la vitesse d'attaque soit le premier à attaquer
 
-    public Entite(int posY,int posX, int PV, Arme Arme, int defense) // constructeur de la class Entite
+    public Entite(int posY,int posX, int PV, Arme Arme, int defense, int velocite) // constructeur de la class Entite
     {
         this.posX = posX;
         this.posY = posY;
         this.PV = PV;
         this.Arme = Arme;
         this.defense = defense;
+        this.velocite = velocite;
+    }
+
+    public int getVelocite() {
+        return velocite;
+    }
+
+    public void setVelocite(int velocite) {
+        this.velocite = velocite;
     }
 
     public Arme getArme() {
