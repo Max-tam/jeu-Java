@@ -118,13 +118,6 @@ public class Hero extends Entite {
     }
 
     public void transfertArmeDansInventaire(List<Arme> listeArme) {
-        for (int indexArme = 0; indexArme < listeArme.size(); indexArme++) {
-            this.inventaireArmes.add(listeArme.get(indexArme));
-            //listeArme.remove()
-        }
-    }
-
-    public void atransfertArmeDansInventaire(List<Arme> listeArme) {
         while (listeArme.size() != 0) {
             this.inventaireArmes.add(listeArme.get(0));
             listeArme.remove(0);
@@ -138,6 +131,10 @@ public class Hero extends Entite {
         }
     }
 
-    
+    public void changementArme(int indexArme) { // permet changer d'arme en main
+        Arme tempo = this.getArme();
+        this.setArme(this.inventaireArmes.get(indexArme));
+        this.inventaireArmes.set(indexArme, tempo);
+    }
 
 }

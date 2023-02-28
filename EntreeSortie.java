@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class EntreeSortie {
@@ -41,7 +40,7 @@ public class EntreeSortie {
 
         System.out.println();
         System.out.println("======| Partie |======\n");
-        System.out.print("Votre speudo: ");
+        System.out.print("Votre pseudo: ");
         String pseudoJoueur = sc.next(); // pseudo du joueur
         return pseudoJoueur;
     }
@@ -97,11 +96,13 @@ public class EntreeSortie {
 
     public int menuEnPartie(Scanner sc) {
         System.out.println();
-        System.out.println( "------| MENU EN JEUX |-------\n\n"+
-                            "----------------------------|\n"+
-                            "|-----< continuer : 1 >-----|\n"+
-                            "|-----<  quitter : 2  >-----|\n"+
-                            "-----------------------------\n\n");
+        System.out.println( "--------| MENU EN JEUX |--------\n\n"+
+                            "-------------------------------|\n"+
+                            "|-----<  continuer : 1   >-----|\n"+
+                            "|-----<  inventaire : 2  >-----|\n"+
+                            "|-----< changer arme : 3 >-----|\n"+
+                            "|-----<   quitter : 4    >-----|\n"+
+                            "--------------------------------\n\n");
         System.out.print("-> ");
         int choixMenuEnPartie = sc.nextInt();
         System.out.println();
@@ -112,9 +113,9 @@ public class EntreeSortie {
         System.out.println();
         System.out.println("------------------------------------------------------------\n"+
                            "Vous êtes sur une case coffre, voici son contenu:\n\n");
-        System.out.println("arme(s) dans le coffre:\n");
+        System.out.println("              -| arme(s) dans le coffre |-                  \n");
         coffre.afficheArmesDansCoffre();
-        System.out.println("\nartefact(s) dans le coffre:\n");
+        System.out.println("\n           -| artefact(s) dans le coffre |-                \n");
         coffre.afficheArtefactDansCoffre();
         System.out.println("------------------------------------------------------------");
         sc.nextLine();
@@ -127,7 +128,8 @@ public class EntreeSortie {
                             "--------------------------------------|\n"+
                             "|-----<   prendre arme(s) : 1   >-----|\n"+
                             "|-----< prendre artefact(s) : 2 >-----|\n"+
-                            "|-----<   ne rien prendre : 3   >-----|\n"+
+                            "|-----<     tout prendre : 3    >-----|\n"+
+                            "|-----<   ne rien prendre : 4   >-----|\n"+
                             "---------------------------------------\n\n");
         System.out.print("-> ");
         int choixMenuCoffre = sc.nextInt();
@@ -137,24 +139,67 @@ public class EntreeSortie {
 
     public void affichageInventaireArme(Scanner sc ,Hero hero) {
         System.out.println( "\n------------| Inventaire Arme |------------\n");
-        System.out.println( "                 -| Equipé |-                \n");
-        System.out.print("- ");
+        System.out.println( "                -| Equipé |-                \n");
+        System.out.print("\t- ");
         System.out.println(hero.getArme().GetNomArme());
-        System.out.println( "\n               -| Inventaire |-                \n");
-        for (int indexArme = 0; indexArme < hero.getInventaireArmes().size(); indexArme++) {
-            System.out.print("- ");
-            System.out.println(hero.getInventaireArmes().get(indexArme).GetNomArme());
+        System.out.println( "\n               -| Inventaire |-            \n");
+        if (hero.getInventaireArmes().size() == 0) {
+            System.out.print("\t- ");
+            System.out.println("Aucun");
+        }
+        else {
+            for (int indexArme = 0; indexArme < hero.getInventaireArmes().size(); indexArme++) {
+                System.out.print("\t- ");
+                System.out.println(hero.getInventaireArmes().get(indexArme).GetNomArme());
+            }
         }
         System.out.println();
     }
 
     public void affichageInventaireArtefact(Scanner sc ,Hero hero) {
         System.out.println( "\n------------| Inventaire Artefact |------------\n");
-        System.out.println( "                 -| Inventaire |-                \n");
-        for (int indexArme = 0; indexArme < hero.getInventaireArtefacts().size(); indexArme++) {
-            System.out.print("- ");
-            System.out.println(hero.getInventaireArtefacts().get(indexArme).getNomArtefact());
+        System.out.println( "               -| Inventaire |-              \n");
+        if (hero.getInventaireArtefacts().size() == 0) {
+            System.out.print("\t- ");
+            System.out.println("Aucun");
+        }
+        else {
+            for (int indexArme = 0; indexArme < hero.getInventaireArtefacts().size(); indexArme++) {
+                System.out.print("\t- ");
+                System.out.println(hero.getInventaireArtefacts().get(indexArme).getNomArtefact());
+            }
         }
         System.out.println();
     }
+
+    public void affichageInventaireGlobal(Scanner sc, Hero hero) {
+        System.out.println("\n===============| INVENTAIRE GLOBAL |===============\n");
+        affichageInventaireArme(sc, hero);
+        affichageInventaireArtefact(sc, hero);
+        System.out.println("\n===================================================\n");
+    }
+
+    public void changerArmeEquipeHero(Scanner sc, Hero hero) {
+        System.out.println("\n===============| CHANGER D'ARME |===============\n");
+        if (hero.getInventaireArmes().size() == 0) {
+            System.out.println("\n\t-| Aucune Arme disponible |-\n");
+        }
+        else {
+            for (int indexArme = 0; indexArme < hero.getInventaireArmes().size(); indexArme++) {
+                System.out.print(indexArme+"\t- ");
+                System.out.println(hero.getInventaireArmes().get(indexArme).GetNomArme());
+            }
+            System.out.print("\nchoix en fonction du numéro:\n\n-> ");
+            int choixChangementArme= sc.nextInt();
+            if (choixChangementArme >= 0 && choixChangementArme <= hero.getInventaireArmes().size()) // permet de verifier que le choix est correct
+        {
+            hero.changementArme(choixChangementArme);
+            System.out.println("\nchangement d'arme: "+hero.getInventaireArmes().get(choixChangementArme).GetNomArme()+" -> "+hero.getArme().GetNomArme());
+        }
+        }
+        System.out.println("\n=================================================\n");
+        sc.nextLine();
+        entreePourPasser(sc);
+    }
+
 }

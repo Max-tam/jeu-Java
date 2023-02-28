@@ -87,6 +87,7 @@ public class Partie {
         // Initialisation Arme
         Arme armeMain = new Arme("main nue",5);
         Arme armeArc = new Arme("arc", 10);
+        Arme armeEpee = new Arme("épee",20);
 
         // Initialisation Artefact
 
@@ -95,12 +96,12 @@ public class Partie {
         Artefact artefactAttaque = new Artefact(effetAttaque, "artefact d'attaque");
 
         // Initialisation Potion
-        Potion potionVie = new Potion(effetVie, "potion de gain de vie", 1);
-        Potion potionDefense = new Potion(effetDefense, "potion de gain de defense",3);
-        Potion potionAttaque = new Potion(effetAttaque, "potion de gain d'attaque",3);
+        Potion potionVie = new Potion(effetVie, "potion de gain de vie", 1,3);
+        Potion potionDefense = new Potion(effetDefense, "potion de gain de defense",3,1);
+        Potion potionAttaque = new Potion(effetAttaque, "potion de gain d'attaque",3,1);
 
-        // Initialisation Coffre
-
+        // Initialisation Coffre - 1
+        
         List<Artefact> listeArtefactCoffre1 = new ArrayList<Artefact>();
         listeArtefactCoffre1.add(artefactAttaque);
         listeArtefactCoffre1.add(artefactDefense);
@@ -110,9 +111,26 @@ public class Partie {
 
         Coffre coffre1 = new Coffre(listeArtefactCoffre1, listeArmeCoffre1, 1, 0);
 
+        // Initialisation Coffre - 2
+
+        List<Artefact> listeArtefactCoffre2 = new ArrayList<Artefact>();
+        listeArtefactCoffre2.add(artefactVie);
+        
+        List<Arme> listeArmeCoffre2 = new ArrayList<Arme>();
+        listeArmeCoffre2.add(armeEpee);
+
+        Coffre coffre2 = new Coffre(listeArtefactCoffre2,listeArmeCoffre2, 4,2);
+
         // Initialisation Joueur
         String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
         Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur);
+
+        List<Potion> listePotionHero = new ArrayList<Potion>();
+        listePotionHero.add(potionAttaque);
+        listePotionHero.add(potionDefense);
+        listePotionHero.add(potionVie);
+
+        hero.setInventairePotions(listePotionHero);
 
         // Initialisation Carte
         char [][] carte = {{'0','0','0','0','0'},
@@ -139,7 +157,7 @@ public class Partie {
         while (Partie) {
             // gestion affichage de la carte
             System.out.println("Voici votre position sur la carte:");
-            Donjon1.metAJourCarte(hero,coffre1); // met à jour la carte avec la position du joueur
+            Donjon1.metAJourCarte(hero,coffre1,coffre2); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
             System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
@@ -156,19 +174,65 @@ public class Partie {
 
                 if (reponseMenuCoffre == 1) {  // transfert les armes dans l'inventaire du joueur
                     hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
-                    entreeSortie.affichageInventaireArme(sc, hero); 
+                    entreeSortie.affichageInventaireArme(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
                 }
-                if (reponseMenuCoffre == 2) { // transfert les artefact dans l'inventaire du joueur
+                if (reponseMenuCoffre == 2) { // transfert les artefacts dans l'inventaire du joueur
                     hero.transfertArtefactDansInventaire(coffre1.getArtefactsDansCoffre());
-                    entreeSortie.affichageInventaireArtefact(sc, hero);             
+                    entreeSortie.affichageInventaireArtefact(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);     
+                }
+                if (reponseMenuCoffre == 3) { // transfert les artefacts et les armes dans l'inventaire du joueur 
+                    hero.transfertArtefactDansInventaire(coffre1.getArtefactsDansCoffre());
+                    hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
+                    entreeSortie.affichageInventaireGlobal(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
+                }
+            }
+
+            // gestion interaction coffre 2
+            boolean estSurLeCoffre2 = hero.estSurUnCoffre(coffre2); // si joueur su le coffre
+            if (estSurLeCoffre2) {
+                entreeSortie.contenuCoffre(coffre2,sc); // affichage contenue coffre
+                int reponseMenuCoffre = entreeSortie.menuInteractionCoffre(sc); // réponse au menu du coffre
+
+                if (reponseMenuCoffre == 1) {  // transfert les armes dans l'inventaire du joueur
+                    hero.transfertArmeDansInventaire(coffre2.getArmesDansCoffre());
+                    entreeSortie.affichageInventaireArme(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
+                }
+                if (reponseMenuCoffre == 2) { // transfert les artefacts dans l'inventaire du joueur
+                    hero.transfertArtefactDansInventaire(coffre2.getArtefactsDansCoffre());
+                    entreeSortie.affichageInventaireArtefact(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);     
+                }
+                if (reponseMenuCoffre == 3) { // transfert les artefacts et les armes dans l'inventaire du joueur 
+                    hero.transfertArtefactDansInventaire(coffre2.getArtefactsDansCoffre());
+                    hero.transfertArmeDansInventaire(coffre2.getArmesDansCoffre());
+                    entreeSortie.affichageInventaireGlobal(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
                 }
             }
 
             // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
                 int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
-                if (choixMenuEnPartie == 2) { // si le joueur demande à quitter
+                if (choixMenuEnPartie == 4) { // si le joueur demande à quitter
                     Partie = false;    
+                }
+                else if (choixMenuEnPartie == 2) { // si le joueur veut voir son inventaire
+                    entreeSortie.affichageInventaireGlobal(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
+                }
+                else if (choixMenuEnPartie == 3) {
+                    entreeSortie.changerArmeEquipeHero(sc, hero);
                 }
                 else if (choixMenuEnPartie != 1) { // si le joueur ne demande pas à continuer non plus
                     entreeSortie.choixIncorrect(sc);

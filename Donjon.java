@@ -23,7 +23,7 @@ public class Donjon
         System.out.println();
     }
 
-    public void metAJourCarte(Hero joueur, Coffre coffre1) {
+    public void metAJourCarte(Hero joueur, Coffre coffre1, Coffre coffre2) {
         for (int axeVertical = 0; axeVertical < carte.length; axeVertical++) {
             for (int axeHorizontal = 0; axeHorizontal < carte[axeVertical].length; axeHorizontal++) {
                 if (carte[axeVertical][axeHorizontal] == 'X') {
@@ -34,6 +34,7 @@ public class Donjon
         }
         // en priorité les objets fixes
         carte[coffre1.getPosY()][coffre1.getPosX()] = 'C';
+        carte[coffre2.getPosY()][coffre2.getPosX()] = 'C';
         // en secondaire les objets objets mobile (pour les voir toujours en premier plan)
         carte[joueur.GetPosYHero()][joueur.GetPosXHero()] = 'X';
     }
