@@ -8,12 +8,12 @@ public class Monstre extends Entite{
         this.nomMonstre = nomMonstre;
     }
 
-    public String getNomHero() // recuperer le nom du monstre
+    public String getNomMonstre() // recuperer le nom du monstre
     {
         return nomMonstre;
     }
 
-    public void setNomHero(String nomMonstre) // definir nom du monstre
+    public void setNomMonstre(String nomMonstre) // definir nom du monstre
     {
         this.nomMonstre = nomMonstre;
     }

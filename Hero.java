@@ -98,6 +98,13 @@ public class Hero extends Entite {
         else { return false; }
     }
 
+    public boolean estSurUnMonstre(Monstre monstre) { // permet de determiner si le joueur est sur une case coffre
+        if (this.getPosX() == monstre.getPosX() && this.getPosY() == monstre.getPosY()) {
+            return true;
+        }
+        else { return false; }
+    }
+
     public void changementDePositionJoueur(char directionPrise) {
         // si direction retourné est droite (D)
         if (directionPrise == 'D') {

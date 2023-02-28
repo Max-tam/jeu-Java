@@ -220,8 +220,13 @@ public class Partie {
                 }
             }
 
-            // gestion Zombie
-
+            // gestion Monstre Zombie
+            boolean estSurMonstreZombie = hero.estSurUnMonstre(zombie);
+            if (estSurMonstreZombie) {
+                //introduction au combat
+                entreeSortie.introCombat(zombie, hero, sc);
+                //lancement combat
+            }
 
 
             // gestion menu en jeux

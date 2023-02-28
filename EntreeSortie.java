@@ -202,4 +202,14 @@ public class EntreeSortie {
         entreePourPasser(sc);
     }
 
+    public void introCombat(Monstre monstre, Hero hero, Scanner sc) {
+        System.out.println("\n===============| ATTENTION |===============\n\n"+
+                           "Attention "+hero.getNomHero()+ "!\n"+
+                           "Vous entrez dans une zone de combat avec un "+monstre.getNomMonstre()+
+                           "\nPreparez vous au combat jeune Hero!\n");
+        System.out.println("\n===========================================\n");
+        sc.nextLine();
+        entreePourPasser(sc);
+    }
+
 }
