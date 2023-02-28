@@ -36,8 +36,8 @@ public class Donjon
         carte[coffre1.getPosY()][coffre1.getPosX()] = 'C'; // coffre 1
         carte[coffre2.getPosY()][coffre2.getPosX()] = 'C'; // coffre 2
 
-        carte[zombie.getPosY()][zombie.getPosX()] = 'M'; // coffre 2
-        carte[squelette.getPosY()][squelette.getPosX()] = 'M'; // coffre 2
+        carte[zombie.getPosY()][zombie.getPosX()] = 'M'; // monstre 1
+        carte[squelette.getPosY()][squelette.getPosX()] = 'M'; // monstre 2
 
         // en secondaire les objets objets mobile (pour les voir toujours en premier plan)
         carte[joueur.getPosY()][joueur.getPosX()] = 'X';

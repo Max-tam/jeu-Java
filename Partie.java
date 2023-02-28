@@ -228,7 +228,22 @@ public class Partie {
                 //introduction au combat
                 entreeSortie.introCombat(zombie, hero, sc);
                 //lancement combat
-                combat.gestionCombat(zombie, hero, sc, entreeSortie);
+                int resultat = combat.gestionCombat(zombie, hero, sc, entreeSortie);
+                if (resultat == 1) {
+                    Partie = false;
+                }
+            }
+
+            // gestion Monstre squelette
+            boolean estSurMonstreSquelette = hero.estSurUnMonstre(squelette);
+            if (estSurMonstreSquelette && !squelette.getEstMort()) {
+                //introduction au combat
+                entreeSortie.introCombat(squelette, hero, sc);
+                //lancement combat
+                int resultat = combat.gestionCombat(squelette, hero, sc, entreeSortie);
+                if (resultat == 1) {
+                    Partie = false;
+                }
             }
 
             // gestion menu en jeux

@@ -216,7 +216,7 @@ public class EntreeSortie {
         System.out.println("\n----------| Tour de "+hero.getNomHero()+" |----------\n\n"+
                            hero.getNomHero()+" fait "+degat+" de dégât à "+ monstre.getNomMonstre()+
                            "\n\nPv restant à "+ monstre.getNomMonstre()+": "+monstre.getPV()+
-                           "\n--------------------------------------------------");
+                           "\n-----------------------------------------");
 
     }
 
@@ -224,7 +224,7 @@ public class EntreeSortie {
         System.out.println("\n----------| Tour de "+monstre.getNomMonstre()+" |----------\n\n"+
                            monstre.getNomMonstre()+" fait "+degat+" de dégât à "+ hero.getNomHero()+
                            "\n\nPv restant à "+ hero.getNomHero()+": "+hero.getPV()+
-                           "\n--------------------------------------------------");
+                           "\n-----------------------------------------");
         sc.nextLine();
         entreePourPasser(sc);
 

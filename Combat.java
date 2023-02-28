@@ -7,7 +7,7 @@ public class Combat {
     private int nombreTourAvecBonusAttaque;
     private int nombreTourAvecBonusDefense;
 
-    public void gestionCombat(Monstre monstre,Hero hero, Scanner sc, EntreeSortie entreeSortie) { // Si monstre plus rapide que le joueur
+    public int gestionCombat(Monstre monstre,Hero hero, Scanner sc, EntreeSortie entreeSortie) { // Si monstre plus rapide que le joueur
         entreeSortie.donneeJoueurEtMonstre(hero, monstre, sc);
         if (monstre.getVelocite() > hero.getVelocite()) {
             System.out.println(monstre.getNomMonstre()+" commence à attaquer car il a un une velocité supérieur à "+hero.getNomHero());
@@ -36,12 +36,58 @@ public class Combat {
                     hero.setDefense(0);
                 }
             }
+            for (int indexEffetArtefact = 0; indexEffetArtefact < hero.getInventaireArtefacts().size(); indexEffetArtefact++) {
+                if (hero.getInventaireArtefacts().get(indexEffetArtefact).getNomEffet().getEffet().equals("vie accrue")) {
+                    hero.setPV(hero.getPV()+5);
+                    if (hero.getPV() > 100) {
+                        hero.setPV(100);
+                    }
+                    System.out.println("\n Régénération de 5 PV grace à l'aterfact de vie");
+                }
+              
+            }
+        }
+        if (!nePrendPasLaFuite) {
+            System.out.println("\n==========| VOUS AVEZ PRIS LA FUITE |==========\n");
+            entreeSortie.entreePourPasser(sc);
+            return 0; // fuite sans conséquence
+        }
+        else if (hero.getPV() == 0) {
+            System.out.println("\n==========| VOUS AVEZ PERDU |==========\n");
+            entreeSortie.entreePourPasser(sc);
+            return 1; // code perdu
+        }
+        else if (monstre.getPV() == 0) {
+            System.out.println("\n==========| VOUS AVEZ GAGNE |==========\n");
+            entreeSortie.entreePourPasser(sc);
+            hero.setExperience(hero.getExperience()+1);
+            monstre.setEstMort(true);
+            return 2; // code gagné
         }
         this.nePrendPasLaFuite = true;
+        return -1; // code erreur
+    }
+    public int calculDefenseHero(Hero hero) {
+        for (int indexEffetArtefact = 0; indexEffetArtefact < hero.getInventaireArtefacts().size(); indexEffetArtefact++) {
+            if (hero.getInventaireArtefacts().get(indexEffetArtefact).getNomEffet().getEffet().equals("defense renforcé")) {
+                return hero.getDefense() + 10;
+            }
+        }
+        return hero.getDefense();
+    }
+
+    public int calculAttaqueHero(Hero hero) {
+        for (int indexEffetArtefact = 0; indexEffetArtefact < hero.getInventaireArtefacts().size(); indexEffetArtefact++) {
+            if (hero.getInventaireArtefacts().get(indexEffetArtefact).getNomEffet().getEffet().equals("attaque accrue")) {
+                return hero.getArme().getDegat() + 10;
+            }
+            System.out.println("\n\nTESTE: "+hero.getInventaireArtefacts().get(indexEffetArtefact).getNomEffet());
+        }
+        return hero.getArme().getDegat();
     }
 
     public int calculDegatARetirerMonstre(Monstre monstre, Hero hero) {
-        int degat = hero.getArme().getDegat() + this.bonusAttaqueJoueur - monstre.getDefense();
+        int degat = calculAttaqueHero(hero) + this.bonusAttaqueJoueur - monstre.getDefense();
         if (degat > 0) { 
             return degat;
         }
@@ -51,7 +97,7 @@ public class Combat {
     }
 
     public int calculDegatARetirerHero(Monstre monstre, Hero hero) {
-        int degat = monstre.getArme().getDegat() - hero.getDefense();
+        int degat = monstre.getArme().getDegat() - calculDefenseHero(hero);
         if (degat > 0) { 
             return degat;
         }
@@ -87,6 +133,9 @@ public class Combat {
             if (choixMenuPotion == 1) { // potion de gain de vie
                 if (hero.getInventairePotions().get(2).getNombreDePotion() > 0) {
                     hero.setPV(hero.getPV()+20);
+                    if (hero.getPV() > 100) {
+                        hero.setPV(100);
+                    }
                     hero.getInventairePotions().get(2).setNombreDePotion(hero.getInventairePotions().get(2).getNombreDePotion()-1);
                 }
                 else {
