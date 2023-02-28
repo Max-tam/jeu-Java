@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Coffre {
     
-    private boolean estOuvert;
     private List<Artefact> artefactsDansCoffre = new ArrayList<Artefact>();
     private List<Arme> armesDansCoffre = new ArrayList<Arme>();
     private int posX;
@@ -12,7 +11,6 @@ public class Coffre {
 /*=========================| Constructeur |=========================*/
 
     public Coffre(List<Artefact> artefactsDansCoffre, List<Arme> armesDansCoffre, int posX, int posY) {// Constucteur de la Class Coffre
-        this.estOuvert = false;
         this.artefactsDansCoffre = artefactsDansCoffre;
         this.armesDansCoffre = armesDansCoffre;
         this.posX = posX;
@@ -52,16 +50,6 @@ public class Coffre {
     public void setPosY(int posY) { // determine la position verticale du coffre
         this.posY = posY;
     }
-
-    public boolean getestOuvert() { // retourne si le coffre est ouvert ou non
-        return estOuvert;
-    }
-
-    public void setEstOuvert(boolean estOuvert) { // defini si le coffre et ouvert ou non
-        this.estOuvert = estOuvert;
-    }
-
-
 
 /*=========================| Fonction / Procedure |=========================*/
 
