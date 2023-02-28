@@ -14,24 +14,27 @@ public class Donjon
 
     public void getCarte() // recuper le tableau de la carte
     {
-        for (int y = 0; y < carte.length; y++) {
-            for (int x = 0; x < carte[y].length; x++) {
-                System.out.print(carte[y][x]+"\t");
+        for (int axeVertical = 0; axeVertical < carte.length; axeVertical++) {
+            for (int axeHorizontal = 0; axeHorizontal < carte[axeVertical].length; axeHorizontal++) {
+                System.out.print(carte[axeVertical][axeHorizontal]+"\t");
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    public void metAJourCarte(Hero joueur) {
-        for (int y = 0; y < carte.length; y++) {
-            for (int x = 0; x < carte[y].length; x++) {
-                if (carte[y][x] == 'X') {
-                    carte[y][x] = '0';
+    public void metAJourCarte(Hero joueur, Coffre coffre1) {
+        for (int axeVertical = 0; axeVertical < carte.length; axeVertical++) {
+            for (int axeHorizontal = 0; axeHorizontal < carte[axeVertical].length; axeHorizontal++) {
+                if (carte[axeVertical][axeHorizontal] == 'X') {
+                    carte[axeVertical][axeHorizontal] = '0';
                 }
             }
             
         }
+        // en priorité les objets fixes
+        carte[coffre1.getPosY()][coffre1.getPosX()] = 'C';
+        // en secondaire les objets objets mobile (pour les voir toujours en premier plan)
         carte[joueur.GetPosYHero()][joueur.GetPosXHero()] = 'X';
     }
 

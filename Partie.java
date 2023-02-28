@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Partie {
@@ -73,25 +75,6 @@ public class Partie {
         }
     }
 
-    public void changementDePositionJoueur(char directionPrise, Hero joueur) {
-        // si direction retourné est droite (D)
-        if (directionPrise == 'D') {
-            joueur.SetPosXHero(joueur.GetPosXHero()+1);
-        }
-        // si direction retourné est gauche (G)
-        if (directionPrise == 'G') {
-            joueur.SetPosXHero(joueur.GetPosXHero()-1);
-        }
-        // si direction retourné est haut (H)
-        if (directionPrise == 'H') {
-            joueur.SetPosYHero(joueur.GetPosYHero()-1);
-        }
-        // si direction retourné est bas (B)
-        if (directionPrise == 'B') {
-            joueur.SetPosYHero(joueur.GetPosYHero()+1);
-        }
-    }
-
     public void initialisationEtPartie(Scanner sc, EntreeSortie entreeSortie) { // Initialisation + gestion de la partie
 
         // ==========| INITIALISATION |==========
@@ -118,8 +101,12 @@ public class Partie {
 
         // Initialisation Coffre
 
-        Artefact [] listeArtefactCoffre1 = {artefactAttaque};
-        Arme [] listeArmeCoffre1 = {armeArc};
+        List<Artefact> listeArtefactCoffre1 = new ArrayList<Artefact>();
+        listeArtefactCoffre1.add(artefactAttaque);
+        listeArtefactCoffre1.add(artefactDefense);
+        
+        List<Arme> listeArmeCoffre1 = new ArrayList<Arme>();
+        listeArmeCoffre1.add(armeArc);
 
         Coffre coffre1 = new Coffre(listeArtefactCoffre1, listeArmeCoffre1, 1, 0);
 
@@ -150,16 +137,34 @@ public class Partie {
         int nombreDeTours = 0;
         
         while (Partie) {
+            // gestion affichage de la carte
             System.out.println("Voici votre position sur la carte:");
-            Donjon1.metAJourCarte(hero); // met à jour la carte avec la position du joueur
+            Donjon1.metAJourCarte(hero,coffre1); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
-            System.out.println("\nVous pouvez identifier votre position avec le symbole X et les case 0 sont des cases vides");
+            System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
+            // gestion mouvement du joueur
             String directionPossibleHero = hero.directionPossible(Donjon1); // assigne les 4 caractères dans un String qui determines la direction possible
             char choixDirectionUtilisateur = entreeSortie.choixDirectionPossible(directionPossibleHero,sc); // choix des direction possible
+            hero.changementDePositionJoueur(choixDirectionUtilisateur); // change les coordonnées du joueur
 
-            changementDePositionJoueur(choixDirectionUtilisateur, hero); // change les coordonnées du joueur
+            // gestion interaction coffre 1
+            boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1); // si joueur su le coffre
+            if (estSurLeCoffre1) {
+                entreeSortie.contenuCoffre(coffre1,sc); // affichage contenue coffre
+                int reponseMenuCoffre = entreeSortie.menuInteractionCoffre(sc); // réponse au menu du coffre
 
+                if (reponseMenuCoffre == 1) {  // transfert les armes dans l'inventaire du joueur
+                    hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
+                    entreeSortie.affichageInventaireArme(sc, hero); 
+                }
+                if (reponseMenuCoffre == 2) { // transfert les artefact dans l'inventaire du joueur
+                    hero.transfertArtefactDansInventaire(coffre1.getArtefactsDansCoffre());
+                    entreeSortie.affichageInventaireArtefact(sc, hero);             
+                }
+            }
+
+            // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
                 int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
                 if (choixMenuEnPartie == 2) { // si le joueur demande à quitter

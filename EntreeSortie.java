@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class EntreeSortie {
@@ -47,27 +48,28 @@ public class EntreeSortie {
 
     public void introduction(String pseudoJoueur, Scanner sc) {
         System.out.println("\n"+
-                           "-----------------------------"+
-                           "\nBonjour "+pseudoJoueur+", Bienvenue sur java RPG.\n"+
-                           "Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux."+
-                           "\n\nbonne chance !"+
-                           "\n-----------------------------\n");
+                           "-------------------------------------------------------------------------------------------------------------------\n"+
+                           "| Bonjour "+pseudoJoueur+", Bienvenue sur java RPG.                                                                \n"+
+                           "| Votre Objectif sera de réunir toutes les armes et artefacts disponible tout en tuant tout les monstres du jeux.  \n"+
+                           "|                                                                                                                  \n"+
+                           "| bonne chance !                                                                                                   \n"+
+                           "-------------------------------------------------------------------------------------------------------------------\n");
         sc.nextLine(); // Entree texte à vide (non prise en compte car celui ci prend la saisi du pseudo du joueur)
         entreePourPasser(sc);
     }
     public char choixDirectionPossible(String directionPossible, Scanner sc) { // possibilité determiné grace au code DGHB
         System.out.println("\nVoici vos possibilités de déplacement:\n");
         if (directionPossible.charAt(0) == 'D') { // .charAt(int indice) permet de récuperer le caractère d'un String
-            System.out.println("\n\t- Droite");
+            System.out.println("\t- Droite");
         }
         if (directionPossible.charAt(1) == 'G') {
-            System.out.println("\n\t- Gauche");
+            System.out.println("\t- Gauche");
         }
         if (directionPossible.charAt(2) == 'H') {
-            System.out.println("\n\t- Haut");
+            System.out.println("\t- Haut");
         }
         if (directionPossible.charAt(3) == 'B') {
-            System.out.println("\n\t- Bas");
+            System.out.println("\t- Bas");
         }
         char direction = '0'; // code 0 correspond à ne bouge pas
         boolean choixDirectionNonPris = true;
@@ -80,8 +82,6 @@ public class EntreeSortie {
                 // deuxième verification si la saisie correspond à un choix possible
                 if (directionPossible.charAt(0) == direction || directionPossible.charAt(1) == direction || directionPossible.charAt(2) == direction || directionPossible.charAt(3) == direction) {
                     choixDirectionNonPris = false;
-                    sc.nextLine(); // Entree texte à vide
-                    entreePourPasser(sc);
                     return direction;   
                 }
                 else {
@@ -106,5 +106,55 @@ public class EntreeSortie {
         int choixMenuEnPartie = sc.nextInt();
         System.out.println();
         return choixMenuEnPartie;
+    }
+
+    public void contenuCoffre(Coffre coffre,Scanner sc) {
+        System.out.println();
+        System.out.println("------------------------------------------------------------\n"+
+                           "Vous êtes sur une case coffre, voici son contenu:\n\n");
+        System.out.println("arme(s) dans le coffre:\n");
+        coffre.afficheArmesDansCoffre();
+        System.out.println("\nartefact(s) dans le coffre:\n");
+        coffre.afficheArtefactDansCoffre();
+        System.out.println("------------------------------------------------------------");
+        sc.nextLine();
+        this.entreePourPasser(sc);
+    }
+
+    public int menuInteractionCoffre(Scanner sc) {
+        System.out.println();
+        System.out.println( "------------| MENU COFFRE |------------\n\n"+
+                            "--------------------------------------|\n"+
+                            "|-----<   prendre arme(s) : 1   >-----|\n"+
+                            "|-----< prendre artefact(s) : 2 >-----|\n"+
+                            "|-----<   ne rien prendre : 3   >-----|\n"+
+                            "---------------------------------------\n\n");
+        System.out.print("-> ");
+        int choixMenuCoffre = sc.nextInt();
+        System.out.println();
+        return choixMenuCoffre;
+    }
+
+    public void affichageInventaireArme(Scanner sc ,Hero hero) {
+        System.out.println( "\n------------| Inventaire Arme |------------\n");
+        System.out.println( "                 -| Equipé |-                \n");
+        System.out.print("- ");
+        System.out.println(hero.getArme().GetNomArme());
+        System.out.println( "\n               -| Inventaire |-                \n");
+        for (int indexArme = 0; indexArme < hero.getInventaireArmes().size(); indexArme++) {
+            System.out.print("- ");
+            System.out.println(hero.getInventaireArmes().get(indexArme).GetNomArme());
+        }
+        System.out.println();
+    }
+
+    public void affichageInventaireArtefact(Scanner sc ,Hero hero) {
+        System.out.println( "\n------------| Inventaire Artefact |------------\n");
+        System.out.println( "                 -| Inventaire |-                \n");
+        for (int indexArme = 0; indexArme < hero.getInventaireArtefacts().size(); indexArme++) {
+            System.out.print("- ");
+            System.out.println(hero.getInventaireArtefacts().get(indexArme).getNomArtefact());
+        }
+        System.out.println();
     }
 }

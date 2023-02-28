@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hero extends Entite {
 
     private String nomHero;
-    private Arme [] inventaireArmes;
-    private Potion [] inventairePotions;
+    private List<Arme> inventaireArmes = new ArrayList<Arme>();
+    private List<Potion> inventairePotions = new ArrayList<Potion>();
+    private List<Artefact> inventaireArtefacts = new ArrayList<Artefact>();
 
     /*=========================| Constructeur |=========================*/
 
@@ -14,22 +18,28 @@ public class Hero extends Entite {
 
     /*=========================| Get / Set |=========================*/
 
-    public Potion[] getInventairePotions() {
-        return inventairePotions;
-    }
-
-    public void setInventairePotions(Potion[] inventairePotions) {
-        this.inventairePotions = inventairePotions;
-    }
-
-    public Arme[] getInventaireArmes() // recuperer l'inventaire d'arme
-    {
+    public List<Arme> getInventaireArmes() {
         return inventaireArmes;
     }
 
-    public void setInventaireArmes(Arme[] inventaireArmes) // l'inventaire d'arme
-    {
+    public void setInventaireArmes(List<Arme> inventaireArmes) {
         this.inventaireArmes = inventaireArmes;
+    }
+
+    public void setInventairePotions(List<Potion> inventairePotions) {
+        this.inventairePotions = inventairePotions;
+    }
+
+    public List<Potion> getInventairePotions() {
+        return inventairePotions;
+    }
+
+    public void setInventaireArtefacts(List<Artefact> inventaireArtefacts) {
+        this.inventaireArtefacts = inventaireArtefacts;
+    }
+
+    public List<Artefact> getInventaireArtefacts() {
+        return inventaireArtefacts;
     }
 
     public String getNomHero() // recuperer le nom du hero
@@ -44,7 +54,7 @@ public class Hero extends Entite {
 
 /*=========================| Fonction / Procedure |=========================*/
 
-    public String directionPossible(Donjon carte) {
+    public String directionPossible(Donjon carte) { // permet de déterminer les directions que peut prendre
         String directionPossible; // ordre DGHB (droite / Gauche / Haut / Bas), prend la valeur 0 si pas possible
         
         // Regarde si le bloc à droite et possible
@@ -80,4 +90,54 @@ public class Hero extends Entite {
         }
         return directionPossible;
     }
+
+    public boolean estSurUnCoffre(Coffre coffre) { // permet de determiner si le joueur est sur une case coffre
+        if (this.GetPosXHero() == coffre.getPosX() && this.GetPosYHero() == coffre.getPosY()) {
+            return true;
+        }
+        else { return false; }
+    }
+
+    public void changementDePositionJoueur(char directionPrise) {
+        // si direction retourné est droite (D)
+        if (directionPrise == 'D') {
+            this.SetPosXHero(this.GetPosXHero()+1);
+        }
+        // si direction retourné est gauche (G)
+        if (directionPrise == 'G') {
+            this.SetPosXHero(this.GetPosXHero()-1);
+        }
+        // si direction retourné est haut (H)
+        if (directionPrise == 'H') {
+            this.SetPosYHero(this.GetPosYHero()-1);
+        }
+        // si direction retourné est bas (B)
+        if (directionPrise == 'B') {
+            this.SetPosYHero(this.GetPosYHero()+1);
+        }
+    }
+
+    public void transfertArmeDansInventaire(List<Arme> listeArme) {
+        for (int indexArme = 0; indexArme < listeArme.size(); indexArme++) {
+            this.inventaireArmes.add(listeArme.get(indexArme));
+            //listeArme.remove()
+        }
+    }
+
+    public void atransfertArmeDansInventaire(List<Arme> listeArme) {
+        while (listeArme.size() != 0) {
+            this.inventaireArmes.add(listeArme.get(0));
+            listeArme.remove(0);
+        }
+    }
+
+    public void transfertArtefactDansInventaire(List<Artefact> listeArtefacts) {
+        while (listeArtefacts.size() != 0) {
+            this.inventaireArtefacts.add(listeArtefacts.get(0));
+            listeArtefacts.remove(0);
+        }
+    }
+
+    
+
 }
