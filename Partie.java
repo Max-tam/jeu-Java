@@ -146,6 +146,7 @@ public class Partie {
         // Initialisation Monstre
         Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0,5);
         Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0,25);
+        Monstre boss = new Monstre("Boss",4,4,200,armeEpee,10,30);
 
         //==========| PENDANT PARTIE |==========
 
@@ -159,7 +160,7 @@ public class Partie {
         while (Partie) {
             // gestion affichage de la carte
             System.out.println("Voici votre position sur la carte:");
-            Donjon1.metAJourCarte(hero,coffre1,coffre2,zombie,squelette); // met à jour la carte avec la position du joueur
+            Donjon1.metAJourCarte(hero,coffre1,coffre2,zombie,squelette,boss); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
             System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
@@ -246,6 +247,21 @@ public class Partie {
                 }
             }
 
+            // gestion Monstre squelette
+            boolean estSurMonstreBoss = hero.estSurUnMonstre(boss);
+            if (estSurMonstreBoss && !boss.getEstMort()) {
+                //introduction au combat
+                entreeSortie.introCombat(boss, hero, sc);
+                //lancement combat
+                int resultat = combat.gestionCombat(boss, hero, sc, entreeSortie);
+                if (resultat == 1) {
+                    Partie = false;
+                }
+                else if (resultat == 2) {
+                    setAGagne(true);
+                }
+            }
+
             // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
                 int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
@@ -265,6 +281,10 @@ public class Partie {
                 }
             }
             ++nombreDeTours;
+            if (getAGagne()) {
+                Partie = false;
+                System.out.println("\n==========| FIN DU JEU, VOUS AVEZ GAGNE |==========\n");
+            }
         }
 
     }

@@ -125,7 +125,7 @@ public class EntreeSortie {
     public int menuInteractionCoffre(Scanner sc) {
         System.out.println();
         System.out.println( "------------| MENU COFFRE |------------\n\n"+
-                            "--------------------------------------|\n"+
+                            "---------------------------------------\n"+
                             "|-----<   prendre arme(s) : 1   >-----|\n"+
                             "|-----< prendre artefact(s) : 2 >-----|\n"+
                             "|-----<     tout prendre : 3    >-----|\n"+
