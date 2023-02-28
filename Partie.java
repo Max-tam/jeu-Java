@@ -79,6 +79,9 @@ public class Partie {
 
         // ==========| INITIALISATION |==========
 
+        // Initialisation Classe Combat
+        Combat combat = new Combat(); 
+
         // Initialisation Effet
         Effet effetDefense = new Effet("defense renforcé");
         Effet effetAttaque = new Effet("attaque accrue");
@@ -90,7 +93,6 @@ public class Partie {
         Arme armeEpee = new Arme("épee",20);
 
         // Initialisation Artefact
-
         Artefact artefactDefense = new Artefact(effetDefense,"artefact de defense");
         Artefact artefactVie = new Artefact(effetVie, "artefact de vie");
         Artefact artefactAttaque = new Artefact(effetAttaque, "artefact d'attaque");
@@ -226,6 +228,7 @@ public class Partie {
                 //introduction au combat
                 entreeSortie.introCombat(zombie, hero, sc);
                 //lancement combat
+                combat.gestionCombat(zombie, hero, sc, entreeSortie);
             }
 
             // gestion menu en jeux
