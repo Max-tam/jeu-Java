@@ -1,3 +1,7 @@
+/* @Author: Maxtam
+ * @Date: 28/02/2023
+ * info: à executer sous VS Code
+ */
 import java.util.Scanner;
 
 public class Main {
@@ -21,6 +25,6 @@ public class Main {
 }
 
 /*
- * - permettre de changer d'arme dans l'inventaire sauf si aucune arme dans l'inventaire (0)
- * - ajouter les potions dans l'inventaire (X)
+ * - permettre d'échanger un item dans le coffre si pas de place
+ * - (rester dans le coffre tant qu'on le ferme pas) 
  */

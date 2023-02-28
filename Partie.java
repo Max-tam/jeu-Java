@@ -157,7 +157,7 @@ public class Partie {
         while (Partie) {
             // gestion affichage de la carte
             System.out.println("Voici votre position sur la carte:");
-            Donjon1.metAJourCarte(hero,coffre1,coffre2); // met à jour la carte avec la position du joueur
+            Donjon1.metAJourCarte(hero,coffre1,coffre2,zombie,squelette); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
             System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
@@ -219,6 +219,10 @@ public class Partie {
                     entreeSortie.entreePourPasser(sc);
                 }
             }
+
+            // gestion Zombie
+
+
 
             // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)

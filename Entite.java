@@ -31,32 +31,32 @@ public class Entite {
         this.defense = defense;
     }
 
-    public void SetPosXHero(int x) // definir coordonnée axe x
+    public void setPosX(int x) // definir coordonnée axe x
     {
         this.posX = x;
     }
 
-    public int GetPosXHero() // recuperer coordonnée axe x
+    public int getPosX() // recuperer coordonnée axe x
     {
         return this.posX;
     }
 
-    public void SetPosYHero(int y) // definir coordonnée axe y
+    public void setPosY(int y) // definir coordonnée axe y
     {
         this.posY = y;
     }
 
-    public int GetPosYHero() // recuperer coordonnée axe y
+    public int getPosY() // recuperer coordonnée axe y
     {
         return this.posY;
     }
 
-    public void SetPV(int PV) // definir le nombre de point de vie du Hero
+    public void setPV(int PV) // definir le nombre de point de vie du Hero
     {
         this.PV = PV;
     }
 
-    public int GetPV() // recuperer nombre de point de vie
+    public int getPV() // recuperer nombre de point de vie
     {
         return PV;
     }
