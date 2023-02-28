@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class EntreeSortie {
@@ -107,14 +108,14 @@ public class EntreeSortie {
         return choixMenuEnPartie;
     }
 
-    public void interactionCoffre(Coffre coffre,Scanner sc) {
+    public void contenuCoffre(Coffre coffre,Scanner sc) {
         System.out.println();
         System.out.println("------------------------------------------------------------\n"+
                            "Vous êtes sur une case coffre, voici son contenu:\n\n");
         System.out.println("arme(s) dans le coffre:\n");
-        coffre.armesDansCoffre();
+        coffre.afficheArmesDansCoffre();
         System.out.println("\nartefact(s) dans le coffre:\n");
-        coffre.artefactDansCoffre();
+        coffre.afficheArtefactDansCoffre();
         System.out.println("------------------------------------------------------------");
         sc.nextLine();
         this.entreePourPasser(sc);
@@ -134,4 +135,15 @@ public class EntreeSortie {
         return choixMenuCoffre;
     }
 
+    public void affichageInventaireArme(Scanner sc ,Hero hero) {
+        System.out.println( "\n------------| Inventaire Arme |------------\n");
+        System.out.println( "                 -| Equipé |-                \n");
+        System.out.print("- ");
+        System.out.println(hero.getArme().GetNomArme());
+        System.out.println( "\n               -| Inventaire |-                \n");
+        for (int indexArme = 0; indexArme < hero.getInventaireArmes().size(); indexArme++) {
+            System.out.print("- ");
+            System.out.println(hero.getInventaireArmes().get(indexArme).GetNomArme());
+        }
+    }
 }

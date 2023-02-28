@@ -117,9 +117,9 @@ public class Hero extends Entite {
         }
     }
 
-    public void transfertArmeDansInventaire(Arme[] listeArme) {
-        for (int i = 0; i < listeArme.length; i++) {
-            //this.inventaireArmes
+    public void transfertArmeDansInventaire(List<Arme> listeArme) {
+        for (int indexArme = 0; indexArme < listeArme.size(); indexArme++) {
+            this.inventaireArmes.add(listeArme.get(indexArme));
         }
     }
 

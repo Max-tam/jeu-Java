@@ -148,10 +148,16 @@ public class Partie {
             hero.changementDePositionJoueur(choixDirectionUtilisateur); // change les coordonnées du joueur
 
             // gestion interaction coffre 1
-            boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1);
+            boolean estSurLeCoffre1 = hero.estSurUnCoffre(coffre1); // si joueur su le coffre
             if (estSurLeCoffre1) {
-                entreeSortie.interactionCoffre(coffre1,sc);
-                int reponseMenuCoffre = entreeSortie.menuInteractionCoffre(sc);
+                entreeSortie.contenuCoffre(coffre1,sc); // affichage contenue coffre
+                int reponseMenuCoffre = entreeSortie.menuInteractionCoffre(sc); // réponse au menu du coffre
+
+                if (reponseMenuCoffre == 1) {  // transfert les armes dans l'inventaire du joueur
+                    hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
+                    entreeSortie.affichageInventaireArme(sc, hero); 
+                }
+
             }
 
             // gestion menu en jeux

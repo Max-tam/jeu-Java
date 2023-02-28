@@ -65,41 +65,24 @@ public class Coffre {
 
 /*=========================| Fonction / Procedure |=========================*/
 
-    public void armesDansCoffre() {// permet d'afficher à l'utilisateur les armes dans le coffre
+    public void afficheArmesDansCoffre() {// permet d'afficher à l'utilisateur les armes dans le coffre
         for (int i = 0; i < this.armesDansCoffre.size(); i++) {
             System.out.print("\t- ");
             System.out.println(this.armesDansCoffre.get(i).GetNomArme());
         }
     }
 
-    public void artefactDansCoffre() { // permet d'afficher à l'utilisateur les artefacts dans le coffre
+    public void afficheArtefactDansCoffre() { // permet d'afficher à l'utilisateur les artefacts dans le coffre
         for (int i = 0; i < this.artefactsDansCoffre.size(); i++) {
             System.out.print("\t- ");
             System.out.println(this.artefactsDansCoffre.get(i).getNomArtefact());
         }
-    }
-
-    public void objetDansCoffre() { // permet d'afficher à l'utilisateur les armes et artefacts dans le coffre
-        System.out.println("\nArme(s) dans le coffre:\n");
-        for (int i = 0; i < this.armesDansCoffre.size(); i++) {
-            System.out.print("\t- ");
-            System.out.println(this.armesDansCoffre.get(i).GetNomArme());
-        }
-        System.out.println("\nArtefact(s) dans le coffre:\n");
-        for (int i = 0; i < this.artefactsDansCoffre.size(); i++) {
-            System.out.print("\t- ");
-            System.out.println(this.artefactsDansCoffre.get(i).getNomArtefact());
-        }
-        System.out.println();
     }
 
     public void gestionMenuCoffre(int choix) {
         if (choix == 1) {
             
         }
-    }
-
-    public void donneArmeAuHero(Hero joueur) {
     }
 
 }
