@@ -79,6 +79,9 @@ public class Partie {
 
         // ==========| INITIALISATION |==========
 
+        // Initialisation Classe Combat
+        Combat combat = new Combat(); 
+
         // Initialisation Effet
         Effet effetDefense = new Effet("defense renforcé");
         Effet effetAttaque = new Effet("attaque accrue");
@@ -90,7 +93,6 @@ public class Partie {
         Arme armeEpee = new Arme("épee",20);
 
         // Initialisation Artefact
-
         Artefact artefactDefense = new Artefact(effetDefense,"artefact de defense");
         Artefact artefactVie = new Artefact(effetVie, "artefact de vie");
         Artefact artefactAttaque = new Artefact(effetAttaque, "artefact d'attaque");
@@ -123,7 +125,7 @@ public class Partie {
 
         // Initialisation Joueur
         String pseudoJoueur = entreeSortie.InitalisationPartie(sc);
-        Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur);
+        Hero hero = new Hero(4,0,100,armeMain,0,pseudoJoueur,10);
 
         List<Potion> listePotionHero = new ArrayList<Potion>();
         listePotionHero.add(potionAttaque);
@@ -142,8 +144,9 @@ public class Partie {
         Donjon Donjon1 = new Donjon(carte);
         
         // Initialisation Monstre
-        Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0);
-        Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0);
+        Monstre zombie = new Monstre("zombie", 2, 2, 50, armeMain, 0,5);
+        Monstre squelette = new Monstre("squelette", 3, 3, 75, armeArc, 0,25);
+        Monstre boss = new Monstre("Boss",4,4,200,armeEpee,10,30);
 
         //==========| PENDANT PARTIE |==========
 
@@ -157,7 +160,7 @@ public class Partie {
         while (Partie) {
             // gestion affichage de la carte
             System.out.println("Voici votre position sur la carte:");
-            Donjon1.metAJourCarte(hero,coffre1,coffre2); // met à jour la carte avec la position du joueur
+            Donjon1.metAJourCarte(hero,coffre1,coffre2,zombie,squelette,boss); // met à jour la carte avec la position du joueur
             Donjon1.getCarte(); // affiche la carte avec la position du joueur
             System.out.println("\nVous pouvez identifier votre position avec le symbole X, les cases C sont des coffres et les case 0 sont des cases vides");
 
@@ -220,6 +223,45 @@ public class Partie {
                 }
             }
 
+            // gestion Monstre Zombie
+            boolean estSurMonstreZombie = hero.estSurUnMonstre(zombie);
+            if (estSurMonstreZombie && !zombie.getEstMort()) {
+                //introduction au combat
+                entreeSortie.introCombat(zombie, hero, sc);
+                //lancement combat
+                int resultat = combat.gestionCombat(zombie, hero, sc, entreeSortie);
+                if (resultat == 1) {
+                    Partie = false;
+                }
+            }
+
+            // gestion Monstre squelette
+            boolean estSurMonstreSquelette = hero.estSurUnMonstre(squelette);
+            if (estSurMonstreSquelette && !squelette.getEstMort()) {
+                //introduction au combat
+                entreeSortie.introCombat(squelette, hero, sc);
+                //lancement combat
+                int resultat = combat.gestionCombat(squelette, hero, sc, entreeSortie);
+                if (resultat == 1) {
+                    Partie = false;
+                }
+            }
+
+            // gestion Monstre squelette
+            boolean estSurMonstreBoss = hero.estSurUnMonstre(boss);
+            if (estSurMonstreBoss && !boss.getEstMort()) {
+                //introduction au combat
+                entreeSortie.introCombat(boss, hero, sc);
+                //lancement combat
+                int resultat = combat.gestionCombat(boss, hero, sc, entreeSortie);
+                if (resultat == 1) {
+                    Partie = false;
+                }
+                else if (resultat == 2) {
+                    setAGagne(true);
+                }
+            }
+
             // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
                 int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
@@ -239,6 +281,10 @@ public class Partie {
                 }
             }
             ++nombreDeTours;
+            if (getAGagne()) {
+                Partie = false;
+                System.out.println("\n==========| FIN DU JEU, VOUS AVEZ GAGNE |==========\n");
+            }
         }
 
     }

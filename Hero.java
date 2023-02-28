@@ -7,16 +7,26 @@ public class Hero extends Entite {
     private List<Arme> inventaireArmes = new ArrayList<Arme>();
     private List<Potion> inventairePotions = new ArrayList<Potion>();
     private List<Artefact> inventaireArtefacts = new ArrayList<Artefact>();
+    private int experience;
 
     /*=========================| Constructeur |=========================*/
 
-    public Hero(int posY,int posX, int PV, Arme Arme, int defense, String nomHero)  // constructeur de la class Hero
+    public Hero(int posY,int posX, int PV, Arme Arme, int defense, String nomHero, int velocite)  // constructeur de la class Hero
     {
-        super(posY, posX, PV, Arme, defense);
+        super(posY, posX, PV, Arme, defense, velocite);
         this.nomHero = nomHero;
+        this.experience = 0;
     }
 
     /*=========================| Get / Set |=========================*/
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
 
     public List<Arme> getInventaireArmes() {
         return inventaireArmes;
@@ -58,7 +68,7 @@ public class Hero extends Entite {
         String directionPossible; // ordre DGHB (droite / Gauche / Haut / Bas), prend la valeur 0 si pas possible
         
         // Regarde si le bloc à droite et possible
-        if (this.GetPosXHero() < carte.getTailleX()-1) { // D pour Droite
+        if (this.getPosX() < carte.getTailleX()-1) { // D pour Droite
             directionPossible = "D";            
         }
         else {
@@ -66,7 +76,7 @@ public class Hero extends Entite {
         }
 
         // Regarde si le bloc à gauche est possible
-        if (this.GetPosXHero() > 0) {
+        if (this.getPosX() > 0) {
             directionPossible = directionPossible + "G";
         }
         else {
@@ -74,7 +84,7 @@ public class Hero extends Entite {
         }
 
         // Regarde si le bloc en Haut est possible
-        if (this.GetPosYHero() > 0) {
+        if (this.getPosY() > 0) {
             directionPossible = directionPossible + "H";
         } 
         else {
@@ -82,7 +92,7 @@ public class Hero extends Entite {
         }
 
         // Regarde si le bloc en Bas est possible
-        if (this.GetPosYHero() < carte.getTailleY()-1 ) {
+        if (this.getPosY() < carte.getTailleY()-1 ) {
             directionPossible = directionPossible + "B";
         }
         else {
@@ -92,7 +102,14 @@ public class Hero extends Entite {
     }
 
     public boolean estSurUnCoffre(Coffre coffre) { // permet de determiner si le joueur est sur une case coffre
-        if (this.GetPosXHero() == coffre.getPosX() && this.GetPosYHero() == coffre.getPosY()) {
+        if (this.getPosX() == coffre.getPosX() && this.getPosY() == coffre.getPosY()) {
+            return true;
+        }
+        else { return false; }
+    }
+
+    public boolean estSurUnMonstre(Monstre monstre) { // permet de determiner si le joueur est sur une case coffre
+        if (this.getPosX() == monstre.getPosX() && this.getPosY() == monstre.getPosY()) {
             return true;
         }
         else { return false; }
@@ -101,19 +118,19 @@ public class Hero extends Entite {
     public void changementDePositionJoueur(char directionPrise) {
         // si direction retourné est droite (D)
         if (directionPrise == 'D') {
-            this.SetPosXHero(this.GetPosXHero()+1);
+            this.setPosX(this.getPosX()+1);
         }
         // si direction retourné est gauche (G)
         if (directionPrise == 'G') {
-            this.SetPosXHero(this.GetPosXHero()-1);
+            this.setPosX(this.getPosX()-1);
         }
         // si direction retourné est haut (H)
         if (directionPrise == 'H') {
-            this.SetPosYHero(this.GetPosYHero()-1);
+            this.setPosY(this.getPosY()-1);
         }
         // si direction retourné est bas (B)
         if (directionPrise == 'B') {
-            this.SetPosYHero(this.GetPosYHero()+1);
+            this.setPosY(this.getPosY()+1);
         }
     }
 

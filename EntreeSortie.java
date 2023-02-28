@@ -31,7 +31,7 @@ public class EntreeSortie {
     }
 
     public void choixIncorrect(Scanner sc) {
-        System.out.println( "==| Choix non correct |=="+
+        System.out.println( "==| Choix non correct |==\n"+
                             "\nAppuyer sur Entree pour refaire un choix");
         sc.nextLine(); // Entree bloquant jusqu'à ce que l'on saute de ligne.
     } 
@@ -125,7 +125,7 @@ public class EntreeSortie {
     public int menuInteractionCoffre(Scanner sc) {
         System.out.println();
         System.out.println( "------------| MENU COFFRE |------------\n\n"+
-                            "--------------------------------------|\n"+
+                            "---------------------------------------\n"+
                             "|-----<   prendre arme(s) : 1   >-----|\n"+
                             "|-----< prendre artefact(s) : 2 >-----|\n"+
                             "|-----<     tout prendre : 3    >-----|\n"+
@@ -202,4 +202,79 @@ public class EntreeSortie {
         entreePourPasser(sc);
     }
 
+    public void introCombat(Monstre monstre, Hero hero, Scanner sc) {
+        System.out.println("\n===============| ATTENTION |===============\n\n"+
+                           "Attention "+hero.getNomHero()+ "!\n"+
+                           "Vous entrez dans une zone de combat avec un "+monstre.getNomMonstre()+
+                           "\nPreparez vous au combat jeune Hero!\n");
+        System.out.println("\n===========================================\n");
+        sc.nextLine();
+        entreePourPasser(sc);
+    }
+
+    public void attaqueSurMonstre(Monstre monstre, Hero hero, Scanner sc, int degat) {
+        System.out.println("\n----------| Tour de "+hero.getNomHero()+" |----------\n\n"+
+                           hero.getNomHero()+" fait "+degat+" de dégât à "+ monstre.getNomMonstre()+
+                           "\n\nPv restant à "+ monstre.getNomMonstre()+": "+monstre.getPV()+
+                           "\n-----------------------------------------");
+
+    }
+
+    public void attaqueSurHero(Monstre monstre, Hero hero, Scanner sc, int degat) {
+        System.out.println("\n----------| Tour de "+monstre.getNomMonstre()+" |----------\n\n"+
+                           monstre.getNomMonstre()+" fait "+degat+" de dégât à "+ hero.getNomHero()+
+                           "\n\nPv restant à "+ hero.getNomHero()+": "+hero.getPV()+
+                           "\n-----------------------------------------");
+        sc.nextLine();
+        entreePourPasser(sc);
+
+    }
+
+    public int menuCombat(Scanner sc) {
+        System.out.println();
+        System.out.println( "--------| MENU COMBAT |--------\n\n"+
+                            "------------------------------|\n"+
+                            "|-----< menu potion : 1 >-----|\n"+
+                            "|-----<  attaquer : 2   >-----|\n"+
+                            "|-----<    fuire : 3    >-----|\n"+
+                            "-------------------------------\n\n");
+        System.out.print("-> ");
+        int choixMenuCombat = sc.nextInt();
+        System.out.println();
+        return choixMenuCombat;
+    }
+
+    public int menuPotion(Scanner sc, Hero hero) {
+        System.out.println();
+        System.out.println( "------------------------| MENU POTION |-----------------------\n\n"+
+                            "-------------------------------------------------------------|\n"+
+                            "|-----< potion de vie : 1 (il vous reste "+hero.getInventairePotions().get(2).getNombreDePotion()+" Potion(s) ) >-----|\n"+
+                            "|----< potion de bouclier : 2 (il vous reste "+hero.getInventairePotions().get(1).getNombreDePotion()+" Potion ) >----|\n"+
+                            "|-----< potion d'attaque : 3 (il vous reste "+hero.getInventairePotions().get(0).getNombreDePotion()+" Potion ) >-----|\n"+
+                            "|---------------------< quitter Menu : 4 >-------------------|\n"+
+                            "--------------------------------------------------------------\n\n");
+        System.out.print("-> ");
+        int choixMenuCombat = sc.nextInt();
+        System.out.println();
+        return choixMenuCombat;
+    }
+
+    public void donneeJoueurEtMonstre(Hero hero, Monstre monstre, Scanner sc) {
+        System.out.println("\n===============| DONNEE JOUEUR / MONSTRE |===============\n\n"+
+                           "\t-----| STAT JOUEUR |-----\n\n"+
+                           "PV: "+ hero.getPV()+
+                           "\nArme: "+hero.getArme().GetNomArme()+
+                           "\ndégât: "+hero.getArme().getDegat()+
+                           "\nDefense: "+hero.getDefense()+
+                           "\nVelocité: "+hero.getVelocite()+
+                           "\n\n\t-----| STAT MONSTRE |-----\n\n"+
+                           "nom: "+monstre.getNomMonstre()+
+                           "\nPV: "+monstre.getPV()+
+                           "\nArme: "+monstre.getArme().GetNomArme()+
+                           "\ndégât: "+monstre.getArme().getDegat()+
+                           "\nDefense: "+monstre.getDefense()+
+                           "\nVelocité: "+monstre.getVelocite());
+        System.out.println("\n\n===========================================\n");
+        entreePourPasser(sc);
+    }
 }
