@@ -19,3 +19,8 @@ public class Main {
         sc.close();
     }
 }
+
+/*
+ * - permettre de changer d'arme dans l'inventaire sauf si aucune arme dans l'inventaire (0)
+ * - ajouter les potions dans l'inventaire (X)
+ */

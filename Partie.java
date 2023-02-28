@@ -156,19 +156,38 @@ public class Partie {
 
                 if (reponseMenuCoffre == 1) {  // transfert les armes dans l'inventaire du joueur
                     hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
-                    entreeSortie.affichageInventaireArme(sc, hero); 
+                    entreeSortie.affichageInventaireArme(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
                 }
-                if (reponseMenuCoffre == 2) { // transfert les artefact dans l'inventaire du joueur
+                if (reponseMenuCoffre == 2) { // transfert les artefacts dans l'inventaire du joueur
                     hero.transfertArtefactDansInventaire(coffre1.getArtefactsDansCoffre());
-                    entreeSortie.affichageInventaireArtefact(sc, hero);             
+                    entreeSortie.affichageInventaireArtefact(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);     
+                }
+                if (reponseMenuCoffre == 3) { // transfert les artefacts et les armes dans l'inventaire du joueur 
+                    hero.transfertArtefactDansInventaire(coffre1.getArtefactsDansCoffre());
+                    hero.transfertArmeDansInventaire(coffre1.getArmesDansCoffre());
+                    entreeSortie.affichageInventaireGlobal(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
                 }
             }
 
             // gestion menu en jeux
             if (nombreDeTours % 5 == 0) { // permet de ne pas avoir le menu d'affiché à tout les tours (ici tout les 5 tours)
                 int choixMenuEnPartie = entreeSortie.menuEnPartie(sc);
-                if (choixMenuEnPartie == 2) { // si le joueur demande à quitter
+                if (choixMenuEnPartie == 4) { // si le joueur demande à quitter
                     Partie = false;    
+                }
+                else if (choixMenuEnPartie == 2) { // si le joueur veut voir son inventaire
+                    entreeSortie.affichageInventaireGlobal(sc, hero);
+                    sc.nextLine();
+                    entreeSortie.entreePourPasser(sc);
+                }
+                else if (choixMenuEnPartie == 3) {
+                    entreeSortie.changerArmeEquipeHero(sc, hero);
                 }
                 else if (choixMenuEnPartie != 1) { // si le joueur ne demande pas à continuer non plus
                     entreeSortie.choixIncorrect(sc);

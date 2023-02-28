@@ -138,6 +138,10 @@ public class Hero extends Entite {
         }
     }
 
-    
+    public void changementArme(int indexArme) { // permet changer d'arme en main
+        Arme tempo = this.getArme();
+        this.setArme(this.inventaireArmes.get(indexArme));
+        this.inventaireArmes.set(indexArme, tempo);
+    }
 
 }
