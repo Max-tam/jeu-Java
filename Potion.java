@@ -7,11 +7,11 @@ public class Potion {
 
 /*=========================| Constructeur |=========================*/
 
-    public Potion(Effet effet, String nomPotion, int duree) { // Constructeur de la Class Potion
+    public Potion(Effet effet, String nomPotion, int duree, int nombreDePotion) { // Constructeur de la Class Potion
         this.nomEffet = effet;
         this.nomPotion = nomPotion;
         this.duree = duree;
-        this.nombreDePotion = 3;
+        this.nombreDePotion = nombreDePotion;
     }
 
 /*=========================| Get / Set |=========================*/
